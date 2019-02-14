@@ -1,0 +1,15 @@
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\bin\Debug\GlennsReportManager.exe.config
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\bin\Debug\GlennsReportManager.exe
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\bin\Debug\GlennsReportManager.pdb
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.csprojAssemblyReference.cache
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\MainWindow.g.cs
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\App.g.cs
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager_MarkupCompile.cache
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager_MarkupCompile.lref
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\MainWindow.baml
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.g.resources
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.Properties.Resources.resources
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.csproj.GenerateResource.cache
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.csproj.CoreCompileInputs.cache
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.exe
+C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.pdb
