@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\obj\Debug\
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\
 GlennsReportManager
 none
 false
 DEBUG;TRACE
-C:\DevProj\GlennsReportManager\GlennsReportManager\GlennsReportManager\App.xaml
-11151548125
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
+21930487619
 
-91815953512
-131569487696
-MainWindow.xaml;
+10-544781273
+151984215308
+GBReport\gbrmain.xaml;MainWindow.xaml;
 
 True
 

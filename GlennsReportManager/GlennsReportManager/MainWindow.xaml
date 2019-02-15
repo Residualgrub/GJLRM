@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager"
         mc:Ignorable="d"
-        Title="GJLRM: Main Menu" Height="392.683" Width="575.61" Background="#FFB02727" BorderBrush="#FFF1E704" Opacity="0.5" ResizeMode="NoResize">
-    <Window.CacheMode>
-        <BitmapCache/>
-    </Window.CacheMode>
+        Title="GJLRM: Main Menu" Height="200" Width="500" Background="White" ResizeMode="NoResize">
+    <Border Padding="10">
+        <Grid Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Margin="0 0 10 0" Grid.Column="0" Content="Gold Buy Report" />
+            <Button Margin="0 0 10 0" Grid.Column="1" Content="Backup"/>
+        </Grid>
+    </Border>
 </Window>
