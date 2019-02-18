@@ -281,7 +281,9 @@ namespace GlennsReportManager {
             
             private global::System.Data.DataColumn columnID;
             
-            private global::System.Data.DataColumn columnDate;
+            private global::System.Data.DataColumn columnMonth;
+            
+            private global::System.Data.DataColumn columnYear;
             
             private global::System.Data.DataColumn columnFile;
             
@@ -328,9 +330,17 @@ namespace GlennsReportManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DateColumn {
+            public global::System.Data.DataColumn MonthColumn {
                 get {
-                    return this.columnDate;
+                    return this.columnMonth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn YearColumn {
+                get {
+                    return this.columnYear;
                 }
             }
             
@@ -379,11 +389,12 @@ namespace GlennsReportManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Sales_ReportsRow AddSales_ReportsRow(System.DateTime Date, string File) {
+            public Sales_ReportsRow AddSales_ReportsRow(short Month, int Year, string File) {
                 Sales_ReportsRow rowSales_ReportsRow = ((Sales_ReportsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Date,
+                        Month,
+                        Year,
                         File};
                 rowSales_ReportsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSales_ReportsRow);
@@ -408,7 +419,8 @@ namespace GlennsReportManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
-                this.columnDate = base.Columns["Date"];
+                this.columnMonth = base.Columns["Month"];
+                this.columnYear = base.Columns["Year"];
                 this.columnFile = base.Columns["File"];
             }
             
@@ -417,8 +429,10 @@ namespace GlennsReportManager {
             private void InitClass() {
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
-                this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDate);
+                this.columnMonth = new global::System.Data.DataColumn("Month", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMonth);
+                this.columnYear = new global::System.Data.DataColumn("Year", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnYear);
                 this.columnFile = new global::System.Data.DataColumn("File", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFile);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -427,7 +441,6 @@ namespace GlennsReportManager {
                 this.columnID.AutoIncrementSeed = -1;
                 this.columnID.AutoIncrementStep = -1;
                 this.columnID.Unique = true;
-                this.columnDate.DateTimeMode = global::System.Data.DataSetDateTime.Local;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -586,17 +599,33 @@ namespace GlennsReportManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime Date {
+            public short Month {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableSales_Reports.DateColumn]));
+                        return ((short)(this[this.tableSales_Reports.MonthColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Date\' in table \'Sales Reports\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Month\' in table \'Sales Reports\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSales_Reports.DateColumn] = value;
+                    this[this.tableSales_Reports.MonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Year {
+                get {
+                    try {
+                        return ((int)(this[this.tableSales_Reports.YearColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Year\' in table \'Sales Reports\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSales_Reports.YearColumn] = value;
                 }
             }
             
@@ -630,14 +659,26 @@ namespace GlennsReportManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDateNull() {
-                return this.IsNull(this.tableSales_Reports.DateColumn);
+            public bool IsMonthNull() {
+                return this.IsNull(this.tableSales_Reports.MonthColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDateNull() {
-                this[this.tableSales_Reports.DateColumn] = global::System.Convert.DBNull;
+            public void SetMonthNull() {
+                this[this.tableSales_Reports.MonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsYearNull() {
+                return this.IsNull(this.tableSales_Reports.YearColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetYearNull() {
+                this[this.tableSales_Reports.YearColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

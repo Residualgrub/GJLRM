@@ -30,3 +30,12 @@ C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.pdb
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GBReport\gbrmain.g.cs
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GBReport\gbrmain.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\grmdb.mdf
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\grmdb_log.ldf
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\Newtonsoft.Json.dll
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\Newtonsoft.Json.pdb
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\Newtonsoft.Json.xml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SReportMain.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager_Content.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SReportMain.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.csproj.CopyComplete

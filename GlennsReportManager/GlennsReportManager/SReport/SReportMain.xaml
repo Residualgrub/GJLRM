@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
         mc:Ignorable="d"
         Title="SReportMain" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+
+    <Border Padding="10">
+        <StackPanel>
+            <Grid Background="#2c99ac">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Margin="10 0 0 0" Text="Reports from " Grid.Column="0" Foreground="#ffffff"/>
+                
+            </Grid>
+        </StackPanel>
+    </Border>
+    
 </Window>
