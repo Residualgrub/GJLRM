@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="grmdbData" targetNamespace="http://tempuri.org/grmdbData.xsd" xmlns:mstns="http://tempuri.org/grmdbData.xsd" xmlns="http://tempuri.org/grmdbData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="grmdbkey" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="grmdbkey (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.GlennsReportManager.Properties.Settings.GlobalReference.Default.grmdbkey" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="grmdbData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="grmdbData" msprop:Generator_UserDSName="grmdbData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Sales_x0020_Reports" msprop:Generator_TableClassName="Sales_ReportsDataTable" msprop:Generator_TableVarName="tableSales_Reports" msprop:Generator_TablePropName="Sales_Reports" msprop:Generator_RowDeletingName="Sales_ReportsRowDeleting" msprop:Generator_RowChangingName="Sales_ReportsRowChanging" msprop:Generator_RowEvHandlerName="Sales_ReportsRowChangeEventHandler" msprop:Generator_RowDeletedName="Sales_ReportsRowDeleted" msprop:Generator_UserTableName="Sales Reports" msprop:Generator_RowChangedName="Sales_ReportsRowChanged" msprop:Generator_RowEvArgName="Sales_ReportsRowChangeEvent" msprop:Generator_RowClassName="Sales_ReportsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+              <xs:element name="Date" msdata:DateTimeMode="Local" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="File" msprop:Generator_ColumnVarNameInTable="columnFile" msprop:Generator_ColumnPropNameInRow="File" msprop:Generator_ColumnPropNameInTable="FileColumn" msprop:Generator_UserColumnName="File" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:Sales_x0020_Reports" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

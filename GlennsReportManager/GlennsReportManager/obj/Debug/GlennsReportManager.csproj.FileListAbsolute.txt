@@ -28,3 +28,5 @@ C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.csproj.CoreCompileInputs.cache
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.exe
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.pdb
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GBReport\gbrmain.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GBReport\gbrmain.baml

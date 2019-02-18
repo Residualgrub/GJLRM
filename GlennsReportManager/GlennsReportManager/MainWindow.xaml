@@ -11,10 +11,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
             <Button Margin="0 0 10 0" Grid.Column="0" Content="Gold Buy Report" />
-            <Button Margin="0 0 10 0" Grid.Column="1" Content="Backup"/>
+            <Button Grid.Column="1" Content="Sales Report"/>
+            <Button Margin="10 0 0 0" Grid.Column="2" Content="Backup"/>
         </Grid>
     </Border>
 </Window>

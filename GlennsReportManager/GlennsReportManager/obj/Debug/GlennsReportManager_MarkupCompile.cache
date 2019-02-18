@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
-11151548125
+3491453214
 
-5-2017746502
-131569487696
-MainWindow.xaml;
+11105912919
+16-782688191
+GBReport\gbrmain.xaml;MainWindow.xaml;SReport\SReportMain.xaml;
 
-False
+True
 
