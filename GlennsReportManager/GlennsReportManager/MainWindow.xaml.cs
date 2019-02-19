@@ -24,5 +24,13 @@ namespace GlennsReportManager
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SReport.SReportMain ReportWindow = new SReport.SReportMain();
+            this.Hide();
+            ReportWindow.ShowDialog();
+            this.Show();
+        }
     }
 }

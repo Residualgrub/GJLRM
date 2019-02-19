@@ -5,35 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
         mc:Ignorable="d"
-        Title="SReportMain" Height="500" Width="800" ResizeMode="NoResize">
+        Title="GJRM: Sales Report Main" Height="500" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <DockPanel>
 
-    <Border Padding="10">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height=".7*"/>
-                <RowDefinition Height="7.5*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-
-            <Grid Background="#009ffb" Grid.Column="0">
+        <Border Name="BDSub" Padding="10">
+            <!--Main Window Grid-->
+            <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height=".7*"/>
+                    <RowDefinition Height="7.5*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Margin="10 0 0 0" Name="LblHeader" Foreground="#FFF" Text="Showing Reports From" VerticalAlignment="Center" FontSize="20" Grid.Column="0"/>
-            </Grid>
-            
-            <ScrollViewer Grid.Row="1" Background="#3b393a">
-                <StackPanel Name="SPReports">
-                </StackPanel>
-            </ScrollViewer>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Button Name="BNTNew" Content="New Report" Padding="20 0 20 0" Margin="0 10 0 10"/>
-                <ComboBox Name="CMBYear" Margin="80 10 0 10"/>
-                <Button Name="BNTSearch" Content="Search" Padding="20 0 20 0" Margin="10 10 0 10"/>
-            </StackPanel>
-        </Grid>
-    </Border>
-    
+                <!--Header-->
+                <Grid Background="#009ffb" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="10 0 0 0" Name="LblHeader" Foreground="#FFF" Text="Showing Reports From" VerticalAlignment="Center" FontSize="20" Grid.Column="0"/>
+                </Grid>
+            
+                <!--No Data Message-->
+                <Grid Name="GDNoData" Background="#3b393a" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Visibility="Hidden" Name="LBLNoData" Text="There is no data avalible for" Background="#009ffb" Foreground="#FFFF" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17" Padding="3 3 3 3"/>
+                </Grid>
+            
+                <!--Data Display Elements-->
+                <ScrollViewer Name="SVData" Grid.Row="1" Background="#3b393a" Visibility="Hidden">
+                    <StackPanel Name="SPReports">
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!--Bottom Options-->
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Button Name="BNTNew" Content="New Report" Padding="20 0 20 0" Margin="0 10 0 10" Click="BNTNew_Click"/>
+                    <Button Name="BNTImport" Content="Import Report" Padding="20 0 20 0" Margin="10 10 0 10" Click="BNTNew_Click"/>
+                    <TextBlock Margin="285 0 0 0" Text="Report Years:" VerticalAlignment="Center"/>
+                    <ComboBox Name="CMBYear" Margin="5 10 0 10"/>
+                    <Button Name="BNTSearch" Content="Search Year" Padding="20 0 20 0" Margin="10 10 0 10"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+    </DockPanel>
 </Window>

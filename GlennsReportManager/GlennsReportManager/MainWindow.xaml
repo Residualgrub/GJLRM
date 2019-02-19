@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager"
         mc:Ignorable="d"
-        Title="GJLRM: Main Menu" Height="200" Width="500" Background="White" ResizeMode="NoResize">
+        Title="GJLRM: Main Menu" Height="200" Width="500" Background="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Border Padding="10">
         <Grid Height="50">
             <Grid.ColumnDefinitions>
@@ -15,7 +15,7 @@
             </Grid.ColumnDefinitions>
             
             <Button Margin="0 0 10 0" Grid.Column="0" Content="Gold Buy Report" />
-            <Button Grid.Column="1" Content="Sales Report"/>
+            <Button Name="SROpen"  Grid.Column="1" Content="Sales Report" Click="Button_Click"/>
             <Button Margin="10 0 0 0" Grid.Column="2" Content="Backup"/>
         </Grid>
     </Border>

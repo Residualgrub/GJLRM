@@ -47,3 +47,4 @@ D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\GlennsReportM
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\GlennsReportManager.csproj.GenerateResource.Cache
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\GlennsReportManager.exe
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\GlennsReportManager.pdb
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\GlennsReportManager.csprojAssemblyReference.cache

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\
 GlennsReportManager
 none
 false
 TRACE
-D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
 3491453214
 2-272440386
-9-919140106
-16345137795
+11-1558354543
+16-782688191
 GBReport\gbrmain.xaml;MainWindow.xaml;SReport\SReportMain.xaml;
 
 False
