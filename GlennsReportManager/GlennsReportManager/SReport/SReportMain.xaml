@@ -5,20 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
         mc:Ignorable="d"
-        Title="SReportMain" Height="450" Width="800">
+        Title="SReportMain" Height="500" Width="800" ResizeMode="NoResize">
 
     <Border Padding="10">
-        <StackPanel>
-            <Grid Background="#2c99ac">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".7*"/>
+                <RowDefinition Height="7.5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <TextBlock Margin="10 0 0 0" Text="Reports from " Grid.Column="0" Foreground="#ffffff"/>
-                
+
+            <Grid Background="#009ffb" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Margin="10 0 0 0" Name="LblHeader" Foreground="#FFF" Text="Showing Reports From" VerticalAlignment="Center" FontSize="20" Grid.Column="0"/>
             </Grid>
-        </StackPanel>
+            
+            <ScrollViewer Grid.Row="1" Background="#3b393a">
+                <StackPanel Name="SPReports">
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button Name="BNTNew" Content="New Report" Padding="20 0 20 0" Margin="0 10 0 10"/>
+                <ComboBox Name="CMBYear" Margin="80 10 0 10"/>
+                <Button Name="BNTSearch" Content="Search" Padding="20 0 20 0" Margin="10 10 0 10"/>
+            </StackPanel>
+        </Grid>
     </Border>
     
 </Window>
