@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
         mc:Ignorable="d"
-        Title="SR: Editor" Height="600" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="SR: Editor" Height="600" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <DockPanel>
 
         <Border Name="BDSub" Padding="10">
@@ -34,9 +34,9 @@
 
                 <!--Bottom Options-->
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <Button Name="BNTNew" Content="New Sale" Padding="20 0 20 0" Margin="0 10 0 10" Click="BNTNew_Click"/>
-                    <Button Name="BNTEdit" Content="Edit Sale" Padding="20 0 20 0" Margin="10 10 0 10" Click="BNTNew_Click"/>
-                    <Button Name="BNTDel" Content="Delete Selected Sales" Padding="20 0 20 0" Margin="10 10 0 10" Click="BNTNew_Click"/>
+                    <Button Name="BNTNew" Content="New Sale" Padding="20 0 20 0" Margin="0 10 0 10"/>
+                    <Button Name="BNTEdit" Content="Edit Sale" Padding="20 0 20 0" Margin="10 10 0 10"/>
+                    <Button Name="BNTDel" Content="Delete Selected Sales" Padding="20 0 20 0" Margin="10 10 0 10"/>
                     <Button Name="BNTSearch" Content="Search Year" Padding="20 0 20 0" Margin="10 10 0 10"/>
                 </StackPanel>
             </Grid>

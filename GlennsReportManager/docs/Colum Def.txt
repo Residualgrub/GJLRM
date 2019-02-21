@@ -1,0 +1,7 @@
+E199: All the sales ammounts added together
+F199: All cost ammounts added together
+G199: All labor ammounts added together
+H199: All GMargine ammounmts added together
+I199: H199/E199 Profit percent
+D201: All the sales ammounts added together
+D208: Taxable Sales By State: 

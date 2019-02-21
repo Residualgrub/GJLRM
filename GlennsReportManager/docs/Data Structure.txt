@@ -1,21 +1,22 @@
 {
-"month":"2",
-"year":"2019",
-"Transactions: [
-   "Report": [
-	
+"Month":"2",
+"Year":"2019",
+"NumOfTrans":"1",
+"Transactions": [
       {
          "id":"01",
-         "language": "Java",
-         "edition": "third",
-         "author": "Herbert Schildt"
+         "Ep":"Pinky",
+	 "Day":"02",
+	 "Cust:"Debbie",
+	 "Amm":"195",
+	 "Cost:"45",
+	 "Labor:"0",
+	 "Type":"Retail",
+	 "Gmarg":"150", --This is auto factored by taking the sale amount and subtracting Cost and Labor
+	 "Prof":"0.769" --A float representing a percentage of profit. Factored by taking Gross Margin and Dividing it by the Sale Amount
+	 "Taxable":"True" --A bool defining if the sale amount in this transaction was taxable. Auto Filled based on trans type
       },
 	
-      {
-         "id":"07",
-         "language": "C++",
-         "edition": "second",
-         "author": "E.Balagurusamy"
-      }
-   ]
-}
+   ],
+"TotalSRev":"195" --The total sale rev as a whole auto factored by taking and adding all sales ammounts together. This Factors in NonTaxable Rev
+"TotalSRevTax":"195" --The total sale rev as a whole auto factored by taking and adding all sales ammounts together. This Excludes NonTaxable Rev

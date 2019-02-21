@@ -75,7 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DBManager.cs" />
+    <Compile Include="DataClasses\JsonFileBackUpData.cs" />
+    <Compile Include="Modules\ConfigManager.cs" />
+    <Compile Include="Modules\DBManager.cs" />
     <Compile Include="grmdbData.cs">
       <DependentUpon>grmdbData.xsd</DependentUpon>
     </Compile>
@@ -165,6 +167,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>grmdb.mdf</DependentUpon>
     </Content>
+    <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
