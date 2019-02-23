@@ -17,11 +17,48 @@ namespace GlennsReportManager.SReport
     /// <summary>
     /// Interaction logic for SRConfigTranAddEditWindow.xaml
     /// </summary>
-    public partial class SRConfigTranAddEditWindow : Window
+    public partial class SRConfigTranAddEditWindow : Window, IDisposable
     {
+        public string Type { get; set; }
+        public bool? Tax { get; set; }
+
         public SRConfigTranAddEditWindow()
         {
+            this.Title = "New Transaction Type";
             InitializeComponent();
+        }
+
+        public SRConfigTranAddEditWindow(string type, bool tax)
+        {
+            this.Title = "Edit Transaction Type";
+            InitializeComponent();
+            TXTType.Text = type;
+            CKTax.IsChecked = tax;
+        }
+
+        private void BTSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (TXTType.Text is null)
+                {
+                    throw new System.NullReferenceException("No transaction type was given! Please provide a transaction type.");
+                }
+
+                this.Type = TXTType.Text;
+                this.Tax = CKTax.IsChecked;
+                this.DialogResult = true;
+                this.Close();
+            }
+            catch (Exception error)
+            {
+
+                System.Windows.Forms.MessageBox.Show(string.Format("An error has occured. ERROR: {0}", error.Message), "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+        public void Dispose()
+        {
+            /* here you'd remove any references you don't need */
         }
     }
 }

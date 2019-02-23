@@ -22,5 +22,12 @@ namespace GlennsReportManager
     {
         public string Name { get; set; }
         public bool Taxable { get; set; }
+
+        public SRTransType(string name, bool tax)
+        {
+            this.Name = name;
+            this.Taxable = tax;
+
+        }
     }
 }

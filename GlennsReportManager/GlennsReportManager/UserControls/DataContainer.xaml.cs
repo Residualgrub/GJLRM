@@ -28,7 +28,7 @@ namespace GlennsReportManager.UserControls
         public DataContainer()
         {
             InitializeComponent();
-            
+
         }
 
         public void SetTitle(string title)
@@ -42,10 +42,10 @@ namespace GlennsReportManager.UserControls
         }
 
 
-
+        //Add function for Sales Report Transaction Types
         public void Add(SRTransType data)
         {
-            if(LBLNoData.Visibility == Visibility.Visible)
+            if (LBLNoData.Visibility == Visibility.Visible)
             {
                 LBLNoData.Visibility = Visibility.Hidden;
             }
@@ -54,5 +54,16 @@ namespace GlennsReportManager.UserControls
             SPData.Children.Add(item);
 
         }
+
+        //New function for Sales Report Transaction Types
+        public void NewTranType()
+        {
+            SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow();
+            if (dialog.ShowDialog().Value)
+            {
+                Add(new SRTransType(dialog.Type, dialog.Tax));
+            }
+        }
+
     }
 }

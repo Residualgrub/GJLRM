@@ -78,6 +78,8 @@ namespace GlennsReportManager.SReport
 
         internal System.Windows.Controls.TextBox TXTType;
         internal System.Windows.Controls.CheckBox CKTax;
+        internal System.Windows.Controls.Button BTSave;
+        internal System.Windows.Controls.Button BTCan;
     }
 }
 

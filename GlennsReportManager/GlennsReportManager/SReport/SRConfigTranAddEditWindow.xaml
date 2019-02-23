@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
         mc:Ignorable="d"
-        Title="SRConfigTranAddEditWindow" Height="189" Width="327.5">
+        Title="SRConfigTranAddEditWindow" Height="189" Width="327.5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -28,8 +28,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
-            <Button Content="Save" VerticalAlignment="Center" Padding="20 5 20 5" Margin="5 0 0 0"/>
-            <Button Content="Cancel" VerticalAlignment="Center" Padding="20 5 20 5" Margin="166 0 0 0"/>
+            <Button x:Name="BTSave" Click="BTSave_Click" Content="Save" VerticalAlignment="Center" Padding="20 5 20 5" Margin="5 0 0 0"/>
+            <Button x:Name="BTCan"  Content="Cancel" VerticalAlignment="Center" Padding="20 5 20 5" Margin="166 0 0 0" IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>
