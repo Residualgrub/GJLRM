@@ -18,8 +18,9 @@ namespace GlennsReportManager
 {
     public partial class settings : Window
     {
-        public bool EditMade = false;
-        public bool Init = false;
+        bool EditMade = false;
+        bool SREdit = false;
+        bool Init = false;
         SRConfigData SRConfig;
         public settings()
         {

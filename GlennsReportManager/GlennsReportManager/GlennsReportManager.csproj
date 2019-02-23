@@ -90,6 +90,9 @@
     <Compile Include="settings.xaml.cs">
       <DependentUpon>settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SReport\SRConfigTranAddEditWindow.xaml.cs">
+      <DependentUpon>SRConfigTranAddEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SReport\SREditor.xaml.cs">
       <DependentUpon>SREditor.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SReport\SRConfigTranAddEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
