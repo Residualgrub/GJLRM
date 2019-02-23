@@ -8,8 +8,7 @@
         Title="SRConfigTranAddEditWindow" Height="189" Width="327.5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,7 +18,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2">
             <TextBlock Text="Transaction Type:" VerticalAlignment="Center" Margin="5 0 0 0"/>
-            <TextBox x:Name="TXTType" Width="200" Height="25" Margin="10 0 0 0"/>
+            <TextBox x:Name="TXTType" Width="200" Height="18" Margin="10 0 0 0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2">
@@ -29,7 +28,7 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Button x:Name="BTSave" Click="BTSave_Click" Content="Save" VerticalAlignment="Center" Padding="20 5 20 5" Margin="5 0 0 0"/>
-            <Button x:Name="BTCan"  Content="Cancel" VerticalAlignment="Center" Padding="20 5 20 5" Margin="166 0 0 0" IsCancel="True"/>
+            <Button x:Name="BTCan"  Content="Cancel" VerticalAlignment="Center" Padding="20 5 20 5" Margin="158 0 0 0" IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

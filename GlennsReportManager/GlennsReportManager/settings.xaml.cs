@@ -70,6 +70,7 @@ namespace GlennsReportManager
 
         private void BTSRAdd_Click(object sender, RoutedEventArgs e)
         {
+            TypeContain.NewTranType();
 
         }
 

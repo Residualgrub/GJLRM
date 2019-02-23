@@ -20,18 +20,19 @@ namespace GlennsReportManager.SReport
     public partial class SRConfigTranAddEditWindow : Window, IDisposable
     {
         public string Type { get; set; }
-        public bool? Tax { get; set; }
+        public bool Tax { get; set; }
 
         public SRConfigTranAddEditWindow()
         {
-            this.Title = "New Transaction Type";
+            
             InitializeComponent();
+            this.Title = "New Transaction Type";
         }
 
         public SRConfigTranAddEditWindow(string type, bool tax)
         {
-            this.Title = "Edit Transaction Type";
             InitializeComponent();
+            this.Title = "Edit Transaction Type";
             TXTType.Text = type;
             CKTax.IsChecked = tax;
         }
@@ -40,13 +41,13 @@ namespace GlennsReportManager.SReport
         {
             try
             {
-                if (TXTType.Text is null)
+                if (TXTType.Text.Length == 0)
                 {
                     throw new System.NullReferenceException("No transaction type was given! Please provide a transaction type.");
                 }
 
                 this.Type = TXTType.Text;
-                this.Tax = CKTax.IsChecked;
+                this.Tax = CKTax.IsChecked ?? false;
                 this.DialogResult = true;
                 this.Close();
             }

@@ -74,3 +74,5 @@ C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainer.baml
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\TTypeItem.baml
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SRConfigTranAddEditWindow.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SRConfigTranAddEditWindow.baml
