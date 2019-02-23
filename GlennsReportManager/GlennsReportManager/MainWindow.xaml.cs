@@ -26,7 +26,7 @@ namespace GlennsReportManager
         public MainWindow()
         {
             InitializeComponent();
-            DFiles.Add(new JsonFileBackUpData("sreportcfg", "data/config", "['STax':0.029, 'CityTax':0.0312, 'CountyTax':0.0123, 'TransTypes':{1:{Name:'Retail', 'Taxable':true}, 2:{Name:'Repair', 'Taxable':false}, 3:{Name:'Repair Taxable', 'Taxable':true}, 4:{Name:'ESP', 'Taxable':false}, 5:{Name:'Gold', 'Taxable':false}}]"));
+            DFiles.Add(new JsonFileBackUpData("sreportcfg", "data/config", "{\"statetax\":0.029, \"countytax\":0.0123, \"citytax\":0.0312, \"pprtatax\":0.01, \"commission\":0.03, \"transtypes\":[{\"name\":\"Retail\", \"taxable\":true}, {\"name\":\"Repair\", \"taxable\":true}, {\"name\":\"ESP\", \"taxable\":false}, {\"name\":\"Gold\", \"taxable\":false}]}"));
             ValidateJsonConfigs();
         }
 
@@ -64,6 +64,14 @@ namespace GlennsReportManager
                     File.WriteAllText(string.Format("{0}/{1}.json", file.FilePath, file.FileName), file.DefaultJson);
                 }
             }
+        }
+
+        private void BTNSettings_Click(object sender, RoutedEventArgs e)
+        {
+            settings Settingwindow = new settings();
+            this.Hide();
+            Settingwindow.ShowDialog();
+            this.Show();
         }
     }
 }

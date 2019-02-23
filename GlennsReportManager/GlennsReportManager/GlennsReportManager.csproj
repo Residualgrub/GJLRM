@@ -76,7 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataClasses\JsonFileBackUpData.cs" />
-    <Compile Include="Modules\ConfigManager.cs" />
+    <Compile Include="DataClasses\SRConfigData.cs" />
     <Compile Include="Modules\DBManager.cs" />
     <Compile Include="grmdbData.cs">
       <DependentUpon>grmdbData.xsd</DependentUpon>
@@ -87,11 +87,20 @@
       <DependentUpon>grmdbData.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataClasses\SRData.cs" />
+    <Compile Include="settings.xaml.cs">
+      <DependentUpon>settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SReport\SREditor.xaml.cs">
       <DependentUpon>SREditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="SReport\SReportMain.xaml.cs">
       <DependentUpon>SReportMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DataContainer.xaml.cs">
+      <DependentUpon>DataContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TTypeItem.xaml.cs">
+      <DependentUpon>TTypeItem.xaml</DependentUpon>
     </Compile>
     <Page Include="GBReport\gbrmain.xaml">
       <SubType>Designer</SubType>
@@ -112,11 +121,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SReport\SREditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SReport\SReportMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DataContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TTypeItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,7 +24,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Margin="10 0 0 0" Name="LblHeader" Foreground="#FFF" Text="Showing Reports From" VerticalAlignment="Center" FontSize="20" Grid.Column="0"/>
                 </Grid>
-            
+
                 <!--No Data Message-->
                 <Grid Name="GDNoData" Background="#3b393a" Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Visibility="Hidden" Name="LBLNoData" Text="There is no data avalible for" Background="#009ffb" Foreground="#FFFF" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17" Padding="3 3 3 3"/>
                 </Grid>
-            
+
                 <!--Data Display Elements-->
                 <ScrollViewer Name="SVData" Grid.Row="1" Background="#3b393a" Visibility="Hidden">
                     <StackPanel Name="SPReports">
@@ -56,6 +56,5 @@
                 </StackPanel>
             </Grid>
         </Border>
-        
     </DockPanel>
 </Window>

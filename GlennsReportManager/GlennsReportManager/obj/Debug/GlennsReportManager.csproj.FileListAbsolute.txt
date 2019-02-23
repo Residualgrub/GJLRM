@@ -65,3 +65,12 @@ D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportMan
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.csproj.GenerateResource.Cache
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.exe
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GlennsReportManager.pdb
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SREditor.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SREditor.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\settings.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainer.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\TTypeItem.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\settings.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainer.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\TTypeItem.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\GeneratedInternalTypeHelper.g.cs

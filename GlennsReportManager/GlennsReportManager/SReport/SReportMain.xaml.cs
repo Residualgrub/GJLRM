@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
+using Newtonsoft.Json;
 namespace GlennsReportManager.SReport
 {
     /// <summary>
@@ -22,6 +23,7 @@ namespace GlennsReportManager.SReport
         List<SRData> Data = new List<SRData>();
         List<int> Years = new List<int>();
         DBManager DB = new DBManager();
+        SRConfigData Config;
         int CurYear;
         public SReportMain()
         {
@@ -30,6 +32,7 @@ namespace GlennsReportManager.SReport
             this.Data = this.DB.CheckForSR(this.CurYear);
             this.Years = this.DB.GetSRYears();
             this.Years.Sort((x, y) => y.CompareTo(x));
+            LoadConfig();
             InitComboBox();
             InitDataView();
             LblHeader.Text = string.Format("Showing Reports From {0}", CurYear.ToString());
@@ -81,6 +84,20 @@ namespace GlennsReportManager.SReport
         public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             
+        }
+
+        public void LoadConfig()
+        {
+            try
+            {
+                string rawjson = File.ReadAllText("data/config/sreportcfg.json");
+                this.Config = JsonConvert.DeserializeObject<SRConfigData>(rawjson);
+            }
+            catch (Exception e)
+            {
+
+                System.Windows.Forms.MessageBox.Show(string.Format("There was an error reading the configueration file! ERROR: {0}", e.Message), "Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
         }
     }
 }
