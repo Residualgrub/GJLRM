@@ -76,12 +76,12 @@ namespace GlennsReportManager
 
         private void BTSREdit_Click(object sender, RoutedEventArgs e)
         {
-
+            TypeContain.StartTranEdit();
         }
 
         private void BTSRDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            TypeContain.StartTranDelete(sender);
         }
     }
 }

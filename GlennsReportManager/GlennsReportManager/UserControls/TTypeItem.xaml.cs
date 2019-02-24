@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace GlennsReportManager.UserControls
 {
-    /// <summary>
-    /// Interaction logic for TTypeItem.xaml
-    /// </summary>
+
     public partial class TTypeItem : UserControl
     {
         public TTypeItem(string Name, bool Tax)
@@ -32,6 +30,19 @@ namespace GlennsReportManager.UserControls
             {
                 LBLTax.Text = "Non-Taxable";
             }
+        }
+        public void Update(string Name, bool Tax)
+        {
+            LBLType.Text = Name;
+            if (Tax)
+            {
+                LBLTax.Text = "Taxable";
+            }
+            else
+            {
+                LBLTax.Text = "Non-Taxable";
+            }
+            
         }
     }
 }

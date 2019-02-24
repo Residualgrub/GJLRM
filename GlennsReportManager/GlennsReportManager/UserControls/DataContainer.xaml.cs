@@ -65,5 +65,62 @@ namespace GlennsReportManager.UserControls
             }
         }
 
+        //This will start the editing process for all seleccted Trans Types
+        public void StartTranEdit()
+        {
+            foreach (TTypeItem ele in SPData.Children){
+                if (ele.CKSele.IsChecked ?? false)
+                {
+
+                    bool tax = true;
+                    if (ele.LBLTax.Text == "Non-Taxable")
+                    {
+                        tax = false;
+                    }
+
+                    SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow(ele.LBLType.Text, tax);
+                    if (dialog.ShowDialog().Value)
+                    {
+                        ele.Update(dialog.Type, dialog.Tax);
+                    }
+                }
+            }
+
+        }
+
+        //This will start the Delete process for all seleccted Trans Types
+        public void StartTranDelete(object sender)
+        {
+            List<TTypeItem> removed = new List<TTypeItem>();
+
+            foreach (TTypeItem ele in SPData.Children)
+            {
+                if (ele.CKSele.IsChecked ?? false)
+                {
+                    removed.Add(ele);
+                }
+            }
+
+            foreach (TTypeItem ele in removed)
+            {
+                   SPData.Children.Remove(ele);
+            }
+
+        }
+
+
+
+
+
+        private static T FindParent<T>(DependencyObject dependencyObject) where T : DependencyObject
+        {
+            var parent = VisualTreeHelper.GetParent(dependencyObject);
+
+            if (parent == null) return null;
+
+            var parentT = parent as T;
+            return parentT ?? FindParent<T>(parent);
+        }
+
     }
 }
