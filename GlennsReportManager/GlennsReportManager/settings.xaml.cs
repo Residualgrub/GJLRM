@@ -13,11 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace GlennsReportManager
 {
     public partial class settings : Window
     {
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
         bool EditMade = false;
         bool SREdit = false;
         bool Init = false;
@@ -82,6 +84,43 @@ namespace GlennsReportManager
         private void BTSRDelete_Click(object sender, RoutedEventArgs e)
         {
             TypeContain.StartTranDelete(sender);
+        }
+
+        private void SRSaveSettings()
+        {
+
+        }
+
+        private void TxtState_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!IsTextAllowed(e.Text))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtState_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+
+        }
+
+
+        
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
         }
     }
 }

@@ -41,27 +41,27 @@
                         <!--State Tax-->
                         <StackPanel Orientation="Horizontal" Grid.Row="0">
                             <TextBlock Text="State Tax:"/>
-                            <TextBox x:Name="TxtState" Margin="21 0 0 0" Width="100"/>
+                            <TextBox x:Name="TxtState" Margin="21 0 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
                         </StackPanel>
                         <!--County Tax-->
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
                             <TextBlock Text="County Tax:" Margin="0 10 0 0"/>
-                            <TextBox x:Name="TxtCounty" Margin="10 10 0 0" Width="100"/>
+                            <TextBox x:Name="TxtCounty" Margin="10 10 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
                         </StackPanel>
                         <!--City Tax-->
                         <StackPanel Orientation="Horizontal" Grid.Row="2">
                             <TextBlock Text="City Tax:" Margin="0 10 0 0"/>
-                            <TextBox x:Name="TxtCity" Margin="28 10 0 0" Width="100"/>
+                            <TextBox x:Name="TxtCity" Margin="28 10 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
                         </StackPanel>
                         <!--PPRTA Tax-->
                         <StackPanel Orientation="Horizontal" Grid.Row="3">
                             <TextBlock Text="PPRTA Tax:" Margin="0 10 0 0"/>
-                            <TextBox x:Name="TxtPP" Margin="15 10 0 0" Width="100"/>
+                            <TextBox x:Name="TxtPP" Margin="15 10 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
                         </StackPanel>
                         <!--Comission-->
                         <StackPanel Orientation="Horizontal" Grid.Row="4">
                             <TextBlock Text="Comission%:" Margin="0 10 0 0"/>
-                            <TextBox x:Name="TxtComish" Margin="5 10 0 0" Width="100"/>
+                            <TextBox x:Name="TxtComish" Margin="5 10 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
                         </StackPanel>
                     </Grid>
                     <!--End Textboxes-->
