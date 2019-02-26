@@ -21,6 +21,9 @@ namespace GlennsReportManager.SReport
     {
         public string Type { get; set; }
         public bool Tax { get; set; }
+        public bool Commission { get; set; }
+        public decimal Commpercent { get; set; }
+        public int Minimum { get; set; }
 
         public SRConfigTranAddEditWindow()
         {
@@ -29,12 +32,21 @@ namespace GlennsReportManager.SReport
             this.Title = "New Transaction Type";
         }
 
-        public SRConfigTranAddEditWindow(string type, bool tax)
+        public SRConfigTranAddEditWindow(string type, bool tax, bool commission, decimal commpercent, int minimum)
         {
             InitializeComponent();
             this.Title = "Edit Transaction Type";
             TXTType.Text = type;
             CKTax.IsChecked = tax;
+            CKComm.IsChecked = commission;
+            TXTRate.Text = commpercent.ToString();
+            TXTMin.Text = minimum.ToString();
+
+            if (!CKComm.IsChecked ?? false)
+            {
+                TXTRate.IsEnabled = false;
+                TXTMin.IsEnabled = false;
+            }
         }
 
         private void BTSave_Click(object sender, RoutedEventArgs e)
@@ -46,8 +58,21 @@ namespace GlennsReportManager.SReport
                     throw new System.NullReferenceException("No transaction type was given! Please provide a transaction type.");
                 }
 
+                if (CKComm.IsChecked ?? false & TXTRate.Text.Length <= 0)
+                {
+                    throw new System.NullReferenceException("No commission rate was provided! Please provide a commission rate.");
+                }
+
+                if (CKComm.IsChecked ?? false & TXTMin.Text.Length <= 0)
+                {
+                    throw new System.NullReferenceException("No minimum transaction amount was provided! Please provide a minimum transaction amount.");
+                }
+
                 this.Type = TXTType.Text;
                 this.Tax = CKTax.IsChecked ?? false;
+                this.Commission = CKComm.IsChecked ?? false;
+                this.Commpercent = decimal.Parse(TXTRate.Text);
+                this.Minimum = Int32.Parse(TXTMin.Text);
                 this.DialogResult = true;
                 this.Close();
             }

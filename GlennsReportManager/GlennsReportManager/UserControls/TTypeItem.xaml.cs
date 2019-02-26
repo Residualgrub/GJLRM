@@ -18,7 +18,10 @@ namespace GlennsReportManager.UserControls
 
     public partial class TTypeItem : UserControl
     {
-        public TTypeItem(string Name, bool Tax)
+        public bool Commission { get; set; }
+        public decimal Commpercent { get; set; }
+        public int Minimum { get; set; }
+        public TTypeItem(string Name, bool Tax, bool commission, decimal commpercent, int minimum)
         {
             InitializeComponent();
             LBLType.Text = Name;
@@ -29,6 +32,18 @@ namespace GlennsReportManager.UserControls
             else
             {
                 LBLTax.Text = "Non-Taxable";
+            }
+            this.Commission = commission;
+            this.Commpercent = commpercent;
+            this.Minimum = minimum;
+
+            if (this.Commission)
+            {
+                LBLComm.Text = "Commissionable";
+            }
+            else
+            {
+                LBLComm.Text = "Non-Commissionable";
             }
         }
         public void Update(string Name, bool Tax)

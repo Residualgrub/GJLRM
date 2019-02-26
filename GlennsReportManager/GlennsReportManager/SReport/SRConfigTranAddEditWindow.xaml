@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
         mc:Ignorable="d"
-        Title="SRConfigTranAddEditWindow" Height="140" Width="327.5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="SRConfigTranAddEditWindow" Height="200" Width="327.5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
@@ -27,6 +30,22 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <TextBlock Text="Commissionable:" VerticalAlignment="Center" Margin="5 0 0 0"/>
+            <CheckBox x:Name="CKComm" VerticalAlignment="Center" Margin="10 0 0 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <TextBlock Text="Commission Rate:" VerticalAlignment="Center" Margin="5 0 0 0"/>
+            <TextBox x:Name="TXTRate" Width="200" Height="18" Margin="10 0 0 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <TextBlock Text="Transaction Minimum:" VerticalAlignment="Center" Margin="5 0 0 0"/>
+            <TextBox x:Name="TXTMin" Width="177" Height="18" Margin="10,4,0,3"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Button x:Name="BTSave" Click="BTSave_Click" Content="Save" VerticalAlignment="Center" Padding="20 5 20 5" Margin="5 0 0 0"/>
             <Button x:Name="BTCan"  Content="Cancel" VerticalAlignment="Center" Padding="20 5 20 5" Margin="158 0 0 0" IsCancel="True"/>
         </StackPanel>

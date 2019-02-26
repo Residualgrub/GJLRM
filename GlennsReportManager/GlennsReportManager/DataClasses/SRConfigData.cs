@@ -12,7 +12,6 @@ namespace GlennsReportManager
         public float Countytax { get; set; }
         public float Citytax { get; set; }
         public float Pprtatax { get; set; }
-        public float Commission { get; set; }
         public List<SRTransType> Transtypes { get; set; }
 
 
@@ -22,11 +21,17 @@ namespace GlennsReportManager
     {
         public string Name { get; set; }
         public bool Taxable { get; set; }
+        public bool Commission { get; set; }
+        public decimal Commpercent { get; set; }
+        public int Minimum { get; set; }
 
-        public SRTransType(string name, bool tax)
+        public SRTransType(string name, bool tax, bool commission, decimal commpercent, int minimum)
         {
             this.Name = name;
             this.Taxable = tax;
+            this.Commission = commission;
+            this.Commpercent = commpercent;
+            this.Minimum = minimum;
 
         }
     }
