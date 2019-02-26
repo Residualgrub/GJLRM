@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GlennsReportManager"
         xmlns:UserControls="clr-namespace:GlennsReportManager.UserControls" x:Class="GlennsReportManager.settings"
         mc:Ignorable="d"
-        Title="GJRM: Settings" Height="550" Width="426.5" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="GJRM: Settings" Height="550" Width="426.5" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="19*"/>
@@ -35,7 +35,6 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
                         <!--State Tax-->
@@ -59,10 +58,7 @@
                             <TextBox x:Name="TxtPP" Margin="15 10 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
                         </StackPanel>
                         <!--Comission-->
-                        <StackPanel Orientation="Horizontal" Grid.Row="4">
-                            <TextBlock Text="Comission%:" Margin="0 10 0 0"/>
-                            <TextBox x:Name="TxtComish" Margin="5 10 0 0" Width="100" PreviewTextInput="TxtState_PreviewTextInput" DataObject.Pasting="TxtState_Pasting"/>
-                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="4"/>
                     </Grid>
                     <!--End Textboxes-->
 
@@ -91,7 +87,7 @@
         <!--Global Buttons-->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
             <Button Name="BTSave" Content="Save" Click="BTSave_Click" Padding="25 0 25 0" Margin="5 5 0 5"/>
-            <Button Name="BTCan" Content="Cancel" Click="BTCan_Click" Padding="25 0 25 0" Margin="235 5 0 5"/>
+            <Button Name="BTCan" Content="Cancel" Padding="25 0 25 0" Margin="235 5 0 5" IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Media;
+
 
 namespace GlennsReportManager.UserControls
 {
@@ -49,7 +51,7 @@ namespace GlennsReportManager.UserControls
             {
                 LBLNoData.Visibility = Visibility.Hidden;
             }
-            var item = new TTypeItem(data.Name, data.Taxable);
+            var item = new TTypeItem(data.Name, data.Taxable, data.Commission, data.Commpercent, data.Minimum);
             item.Margin = new Thickness(10, 20, 20, 10);
             SPData.Children.Add(item);
 
@@ -58,10 +60,26 @@ namespace GlennsReportManager.UserControls
         //New function for Sales Report Transaction Types
         public void NewTranType()
         {
-            SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow();
-            if (dialog.ShowDialog().Value)
+            try
             {
-                Add(new SRTransType(dialog.Type, dialog.Tax));
+                SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow();
+                if (dialog.ShowDialog().Value)
+                {
+                    foreach (TTypeItem ele in SPData.Children)
+                    {
+                        if (ele.LBLType.Text.ToLower() == dialog.Type.ToLower() & Helper.GetSRTaxBool(ele.LBLTax.Text) == dialog.Tax & ele.Commission == dialog.Commission)
+                        {
+                            throw new System.NullReferenceException(string.Format("There is already a transaction type named \"{0}\" that also shares the same tax and commission properties!", dialog.Type));
+                        }
+                    }
+                    Add(new SRTransType(dialog.Type, dialog.Tax, dialog.Commission, dialog.Commpercent, dialog.Minimum));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                SystemSounds.Exclamation.Play();
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
 
@@ -78,11 +96,13 @@ namespace GlennsReportManager.UserControls
                         tax = false;
                     }
 
-                    SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow(ele.LBLType.Text, tax);
+                    SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow(ele.LBLType.Text, tax, ele.Commission, ele.Commpercent, ele.Minimum);
                     if (dialog.ShowDialog().Value)
                     {
                         ele.Update(dialog.Type, dialog.Tax);
                     }
+
+                    ele.CKSele.IsChecked = false;
                 }
             }
 
@@ -101,9 +121,24 @@ namespace GlennsReportManager.UserControls
                 }
             }
 
+            if (removed.Count == SPData.Children.Count)
+            {
+                SystemSounds.Question.Play();
+                var result = System.Windows.Forms.MessageBox.Show("All transaction types are set to be removed! If you do this you will not be able to add any new transactions to reports. Are you sure you want to do this?", "Warning", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+                if (result == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             foreach (TTypeItem ele in removed)
             {
                    SPData.Children.Remove(ele);
+            }
+
+            if (SPData.Children.Count <= 0)
+            {
+                LBLNoData.Visibility = Visibility.Visible;
             }
 
         }

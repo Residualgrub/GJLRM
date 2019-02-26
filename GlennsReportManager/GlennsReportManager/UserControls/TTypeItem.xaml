@@ -23,7 +23,11 @@
                 </CheckBox.LayoutTransform>
             </CheckBox>
             <TextBlock x:Name="LBLType" Text="Retail" Grid.Column="1" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="40"/>
-            <TextBlock x:Name="LBLTax" Text="Taxable" Grid.Column="2" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="40"/>
+            <StackPanel Orientation="Vertical" Grid.Column="2">
+                <TextBlock x:Name="LBLTax" Text="Taxable" Grid.Column="2" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="40"/>
+                <TextBlock x:Name="LBLComm" Text="Non-Commissionable" Grid.Column="2" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="28"/>
+            </StackPanel>
+            
         </Grid>
     </Viewbox>
 </UserControl>

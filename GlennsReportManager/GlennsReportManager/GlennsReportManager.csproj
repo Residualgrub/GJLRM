@@ -87,6 +87,7 @@
       <DependentUpon>grmdbData.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataClasses\SRData.cs" />
+    <Compile Include="Modules\Helper.cs" />
     <Compile Include="settings.xaml.cs">
       <DependentUpon>settings.xaml</DependentUpon>
     </Compile>
