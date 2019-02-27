@@ -40,6 +40,10 @@ namespace GlennsReportManager
             try
             {
                 SRSaveSettings();
+
+
+                EditMade = false;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -109,33 +113,35 @@ namespace GlennsReportManager
         //This function handles saving the Sales Report config data
         private void SRSaveSettings()
         {
-            //Check to see if the text boxes are empty and if they are reset them to their previous values
-            if (TxtCity.Text.Length <= 0)
+            //Check to see if the text boxes are empty if they aren't then assign the new values to the config.
+            //If they are empty the config will keep its old values as contingency.
+            if (TxtCity.Text.Length > 0){SRConfig.Citytax = decimal.Parse(TxtCity.Text);}
+
+
+            if (TxtState.Text.Length > 0){SRConfig.Statetax = decimal.Parse(TxtState.Text);}
+
+            if (TxtCounty.Text.Length > 0){ SRConfig.Countytax = decimal.Parse(TxtCounty.Text); }
+
+            if (TxtPP.Text.Length <= 0){SRConfig.Pprtatax = decimal.Parse(TxtPP.Text); }
+
+            List<SRTransType> types = new List<SRTransType>();
+
+            foreach (UserControls.TTypeItem ele in TypeContain.SPData.Children)
             {
-                TxtCity.Text = SRConfig.Citytax.ToString();
+                types.Add(new SRTransType(ele.LBLType.Text, Helper.GetSRTaxBool(ele.LBLTax.Text), ele.Commission, ele.Commpercent, ele.Minimum));
             }
 
-            if (TxtState.Text.Length <= 0)
-            {
-                TxtState.Text = SRConfig.Statetax.ToString();
-            }
-
-            if (TxtCounty.Text.Length <= 0)
-            {
-                TxtCounty.Text = SRConfig.Countytax.ToString();
-            }
-
-            if (TxtPP.Text.Length <= 0)
-            {
-                TxtPP.Text = SRConfig.Pprtatax.ToString();
-            }
-
+            SRConfig.Transtypes.Clear();
+            SRConfig.Transtypes = types;
+            string rawjson = JsonConvert.SerializeObject(SRConfig);
+            File.WriteAllText("data/config/sreportcfg.json", rawjson);
         }
 
         private void TxtState_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!IsTextAllowed(e.Text))
+            if (!Helper.IsTextAllowed(e.Text))
             {
+                SystemSounds.Exclamation.Play();
                 e.Handled = true;
                 return;
             }
@@ -147,8 +153,9 @@ namespace GlennsReportManager
             if (e.DataObject.GetDataPresent(typeof(String)))
             {
                 String text = (String)e.DataObject.GetData(typeof(String));
-                if (!IsTextAllowed(text))
+                if (!Helper.IsTextAllowed(text))
                 {
+                    SystemSounds.Exclamation.Play();
                     e.CancelCommand();
                 }
                 EditMade = true;
@@ -161,11 +168,6 @@ namespace GlennsReportManager
         }
 
 
-        
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-            
-        }
+
     }
 }

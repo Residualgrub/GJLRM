@@ -8,10 +8,10 @@ namespace GlennsReportManager
     //This is the main container for the Sales Report config data
     public class SRConfigData
     {
-        public float Statetax { get; set; }
-        public float Countytax { get; set; }
-        public float Citytax { get; set; }
-        public float Pprtatax { get; set; }
+        public decimal Statetax { get; set; }
+        public decimal Countytax { get; set; }
+        public decimal Citytax { get; set; }
+        public decimal Pprtatax { get; set; }
         public List<SRTransType> Transtypes { get; set; }
 
 

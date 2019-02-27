@@ -99,7 +99,7 @@ namespace GlennsReportManager.UserControls
                     SReport.SRConfigTranAddEditWindow dialog = new SReport.SRConfigTranAddEditWindow(ele.LBLType.Text, tax, ele.Commission, ele.Commpercent, ele.Minimum);
                     if (dialog.ShowDialog().Value)
                     {
-                        ele.Update(dialog.Type, dialog.Tax);
+                        ele.Update(dialog.Type, dialog.Tax, dialog.Commission, dialog.Commpercent, dialog.Minimum);
                     }
 
                     ele.CKSele.IsChecked = false;

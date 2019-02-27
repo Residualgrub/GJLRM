@@ -31,16 +31,16 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
             <TextBlock Text="Commissionable:" VerticalAlignment="Center" Margin="5 0 0 0"/>
-            <CheckBox x:Name="CKComm" VerticalAlignment="Center" Margin="10 0 0 0"/>
+            <CheckBox x:Name="CKComm" VerticalAlignment="Center" Margin="10 0 0 0" Click="CKComm_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
             <TextBlock Text="Commission Rate:" VerticalAlignment="Center" Margin="5 0 0 0"/>
-            <TextBox x:Name="TXTRate" Width="200" Height="18" Margin="10 0 0 0"/>
+            <TextBox x:Name="TXTRate" Width="200" Height="18" Margin="10 0 0 0" PreviewTextInput="TXTRate_PreviewTextInput" DataObject.Pasting="TXTRate_Pasting"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2">
-            <TextBlock Text="Transaction Minimum:" VerticalAlignment="Center" Margin="5 0 0 0"/>
+            <TextBlock Text="Transaction Minimum:" VerticalAlignment="Center" Margin="5 0 0 0" PreviewTextInput="TXTRate_PreviewTextInput" DataObject.Pasting="TXTRate_Pasting"/>
             <TextBox x:Name="TXTMin" Width="177" Height="18" Margin="10,4,0,3"/>
         </StackPanel>
 

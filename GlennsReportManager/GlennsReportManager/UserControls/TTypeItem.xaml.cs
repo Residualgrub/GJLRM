@@ -46,7 +46,7 @@ namespace GlennsReportManager.UserControls
                 LBLComm.Text = "Non-Commissionable";
             }
         }
-        public void Update(string Name, bool Tax)
+        public void Update(string Name, bool Tax, bool commission, decimal commpercent, int minimum)
         {
             LBLType.Text = Name;
             if (Tax)
@@ -57,7 +57,19 @@ namespace GlennsReportManager.UserControls
             {
                 LBLTax.Text = "Non-Taxable";
             }
-            
+            this.Commission = commission;
+            this.Commpercent = commpercent;
+            this.Minimum = minimum;
+
+            if (this.Commission)
+            {
+                LBLComm.Text = "Commissionable";
+            }
+            else
+            {
+                LBLComm.Text = "Non-Commissionable";
+            }
+
         }
     }
 }
