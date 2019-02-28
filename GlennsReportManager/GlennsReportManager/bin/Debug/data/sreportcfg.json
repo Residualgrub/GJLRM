@@ -1,1 +1,0 @@
-{"Statetax":0.029,"Countytax":0.0123,"Citytax":0.0312,"Pprtatax":0.01,"Transtypes":[{"Name":"Retail","Taxable":true,"Commission":true,"Commpercent":0.03,"Minimum":0},{"Name":"Repair","Taxable":true,"Commission":true,"Commpercent":0.03,"Minimum":200},{"Name":"ESP","Taxable":false,"Commission":true,"Commpercent":0.1,"Minimum":0}]}
