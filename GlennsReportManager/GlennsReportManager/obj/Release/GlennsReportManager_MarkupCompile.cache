@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Release\
 GlennsReportManager
 none
 false
 TRACE
-D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
-4-1662466896
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
+10-115909009
 2-272440386
-121250059980
-16345137795
-GBReport\gbrmain.xaml;MainWindow.xaml;SReport\SREditor.xaml;SReport\SReportMain.xaml;
+21670873554
+16-782688191
+GBReport\gbrmain.xaml;MainWindow.xaml;settings.xaml;SReport\SRConfigTaxAddEditWindow.xaml;SReport\SRConfigTranAddEditWindow.xaml;SReport\SREditor.xaml;SReport\SReportMain.xaml;UserControls\DataContainer.xaml;UserControls\TaxBracketItem.xaml;UserControls\TTypeItem.xaml;
 splashscreen1.png
 False
 

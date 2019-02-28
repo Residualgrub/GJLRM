@@ -17,7 +17,7 @@
             
             <Button Margin="0 0 10 0" Grid.Column="0" Content="Gold Buy Report" />
             <Button Name="SROpen"  Grid.Column="1" Content="Sales Report" Click="Button_Click"/>
-            <Button Margin="10 0 0 0" Grid.Column="2" Content="Backup"/>
+            <Button Name="BTBackup" Margin="10 0 0 0" Grid.Column="2" Content="Backup" Click="BTBackup_Click"/>
             <Button Name="BTNSettings" Margin="10 0 0 0" Grid.Column="3" Content="Settings" Click="BTNSettings_Click"/>
         </Grid>
     </Border>

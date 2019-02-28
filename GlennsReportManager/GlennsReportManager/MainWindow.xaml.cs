@@ -26,7 +26,7 @@ namespace GlennsReportManager
         public MainWindow()
         {
             InitializeComponent();
-            DFiles.Add(new JsonFileBackUpData("sreportcfg", "data/config", "{\"statetax\":0.029, \"countytax\":0.0123, \"citytax\":0.0312, \"pprtatax\":0.01, \"transtypes\":[{\"name\":\"Retail\", \"taxable\":true, \"commission\":true, \"commpercent\":0.03, \"minimum\":0}, {\"name\":\"Repair\", \"taxable\":true, \"commission\":true, \"commpercent\":0.03, \"minimum\":200}, {\"name\":\"ESP\", \"taxable\":false, \"commission\":true, \"commpercent\":0.1, \"minimum\":0}, {\"name\":\"Gold\", \"taxable\":false, \"commission\":false, \"commpercent\":0, \"minimum\":0}]}"));
+            DFiles.Add(new JsonFileBackUpData("sreportcfg", "data/config", "{\"TaxBrackets\":[{\"Name\":\"CO State\", \"Percent\":0.029},{\"Name\":\"Elpaso County\", \"Percent\":0.0123},{\"Name\":\"CO Springs\", \"Percent\":0.0312},{\"Name\":\"PPRTA\", \"Percent\":0.01}],\"Transtypes\":[{\"Name\":\"Retail\",\"Taxable\":true,\"Commission\":true,\"Commpercent\":0.03,\"Minimum\":0},{\"Name\":\"Repair\",\"Taxable\":true,\"Commission\":true,\"Commpercent\":0.03,\"Minimum\":200},{\"Name\":\"ESP\",\"Taxable\":false,\"Commission\":true,\"Commpercent\":0.1,\"Minimum\":0},{\"Name\":\"Gold\",\"Taxable\":false,\"Commission\":false,\"Commpercent\":0.0,\"Minimum\":0}]}"));
             ValidateJsonConfigs();
         }
 
@@ -71,6 +71,14 @@ namespace GlennsReportManager
             settings Settingwindow = new settings();
             this.Hide();
             Settingwindow.ShowDialog();
+            this.Show();
+        }
+
+        private void BTBackup_Click(object sender, RoutedEventArgs e)
+        {
+            Backup Backupwindow = new Backup();
+            this.Hide();
+            Backupwindow.ShowDialog();
             this.Show();
         }
     }

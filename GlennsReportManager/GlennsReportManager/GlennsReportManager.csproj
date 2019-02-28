@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Backup.xaml.cs">
+      <DependentUpon>Backup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataClasses\JsonFileBackUpData.cs" />
     <Compile Include="DataClasses\SRConfigData.cs" />
     <Compile Include="Modules\DBManager.cs" />
@@ -91,6 +94,9 @@
     <Compile Include="settings.xaml.cs">
       <DependentUpon>settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SReport\SRConfigTaxAddEditWindow.xaml.cs">
+      <DependentUpon>SRConfigTaxAddEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SReport\SRConfigTranAddEditWindow.xaml.cs">
       <DependentUpon>SRConfigTranAddEditWindow.xaml</DependentUpon>
     </Compile>
@@ -103,9 +109,16 @@
     <Compile Include="UserControls\DataContainer.xaml.cs">
       <DependentUpon>DataContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TaxBracketItem.xaml.cs">
+      <DependentUpon>TaxBracketItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TTypeItem.xaml.cs">
       <DependentUpon>TTypeItem.xaml</DependentUpon>
     </Compile>
+    <Page Include="Backup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GBReport\gbrmain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SReport\SRConfigTaxAddEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SReport\SRConfigTranAddEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DataContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TaxBracketItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +217,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>grmdb.mdf</DependentUpon>
     </Content>
+    <Resource Include="Icons\book_add.ico" />
+    <Resource Include="Icons\book_edit.ico" />
+    <Resource Include="Icons\cog_add.ico" />
+    <Resource Include="Icons\cog_edit.ico" />
+    <Resource Include="Icons\cog.ico" />
     <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>
   <ItemGroup>

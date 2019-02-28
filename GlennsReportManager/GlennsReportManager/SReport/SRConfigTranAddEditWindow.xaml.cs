@@ -40,6 +40,7 @@ namespace GlennsReportManager.SReport
             TXTRate.Text = "0";
             TXTMin.Text = "0";
             this.Commission = false;
+            this.Icon = new BitmapImage(new Uri("pack://application:,,,/icons/cog_add.ico"));
         }
 
         public SRConfigTranAddEditWindow(string type, bool tax, bool commission, decimal commpercent, int minimum)
@@ -57,6 +58,7 @@ namespace GlennsReportManager.SReport
                 TXTRate.IsEnabled = false;
                 TXTMin.IsEnabled = false;
             }
+            this.Icon = new BitmapImage(new Uri("pack://application:,,,/icons/cog_edit.ico"));
         }
 
         private void BTSave_Click(object sender, RoutedEventArgs e)

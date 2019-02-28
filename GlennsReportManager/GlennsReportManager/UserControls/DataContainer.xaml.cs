@@ -57,6 +57,18 @@ namespace GlennsReportManager.UserControls
 
         }
 
+        //Add function for Sales Report Tax Brackets
+        public void Add(SRTaxBracket data)
+        {
+            if (LBLNoData.Visibility == Visibility.Visible)
+            {
+                LBLNoData.Visibility = Visibility.Hidden;
+            }
+            var item = new TaxBracketItem(data.Name, data.Percent);
+            item.Margin = new Thickness(10, 20, 20, 10);
+            SPData.Children.Add(item);
+        }
+
         //New function for Sales Report Transaction Types
         public void NewTranType()
         {
@@ -134,6 +146,89 @@ namespace GlennsReportManager.UserControls
             foreach (TTypeItem ele in removed)
             {
                    SPData.Children.Remove(ele);
+            }
+
+            if (SPData.Children.Count <= 0)
+            {
+                LBLNoData.Visibility = Visibility.Visible;
+            }
+
+        }
+
+
+
+        //New function for Sales Report Transaction Types
+        public void NewTaxType()
+        {
+            try
+            {
+                SReport.SRConfigTaxAddEditWindow dialog = new SReport.SRConfigTaxAddEditWindow();
+                if (dialog.ShowDialog().Value)
+                {
+                    foreach (TaxBracketItem ele in SPData.Children)
+                    {
+                        if (ele.LBLType.Text.ToLower() == dialog.Name.ToLower() & ele.Rate.ToString() == dialog.TXTRate.Text)
+                        {
+                            throw new System.NullReferenceException(string.Format("There is already a tax bracket named \"{0}\" that shares the same tax rate!", dialog.TXTType.Text));
+                        }
+                    }
+                    Add(new SRTaxBracket(dialog.TXTType.Text, decimal.Parse(dialog.TXTRate.Text)));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                SystemSounds.Exclamation.Play();
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+
+        //This will start the editing process for all seleccted Trans Types
+        public void StartTaxEdit()
+        {
+            foreach (TaxBracketItem ele in SPData.Children)
+            {
+                if (ele.CKSele.IsChecked ?? false)
+                {
+
+                    SReport.SRConfigTaxAddEditWindow dialog = new SReport.SRConfigTaxAddEditWindow(ele.Name, ele.Rate);
+                    if (dialog.ShowDialog().Value)
+                    {
+                        ele.Update(dialog.Name, dialog.Rate);
+                    }
+
+                    ele.CKSele.IsChecked = false;
+                }
+            }
+
+        }
+
+        //This will start the Delete process for all seleccted Trans Types
+        public void StartTaxDelete(object sender)
+        {
+            List<TaxBracketItem> removed = new List<TaxBracketItem>();
+
+            foreach (TaxBracketItem ele in SPData.Children)
+            {
+                if (ele.CKSele.IsChecked ?? false)
+                {
+                    removed.Add(ele);
+                }
+            }
+
+            if (removed.Count == SPData.Children.Count)
+            {
+                SystemSounds.Question.Play();
+                var result = System.Windows.Forms.MessageBox.Show("All tax brackets are set to be removed! If you do this it will alter all non finalized reports. Are you sure you want to do this?", "Warning", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+                if (result == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            foreach (TaxBracketItem ele in removed)
+            {
+                SPData.Children.Remove(ele);
             }
 
             if (SPData.Children.Count <= 0)

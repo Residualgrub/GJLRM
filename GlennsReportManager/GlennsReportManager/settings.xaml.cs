@@ -30,6 +30,8 @@ namespace GlennsReportManager
             InitializeComponent();
             TypeContain.SetTitle("Transaction Types");
             TypeContain.SetNoDataMessage("No types found!");
+            TaxContain.SetTitle("Tax Brackets");
+            TaxContain.SetNoDataMessage("No brackets found!");
             InitSRSettings();
 
             Init = true;
@@ -76,10 +78,11 @@ namespace GlennsReportManager
             {
                 string rawjson = File.ReadAllText("data/config/sreportcfg.json");
                 this.SRConfig = JsonConvert.DeserializeObject<SRConfigData>(rawjson);
-                TxtCity.Text = this.SRConfig.Citytax.ToString();
-                TxtCounty.Text = this.SRConfig.Countytax.ToString();
-                TxtState.Text = this.SRConfig.Statetax.ToString();
-                TxtPP.Text = this.SRConfig.Pprtatax.ToString();
+
+                foreach (var type in this.SRConfig.TaxBrackets)
+                {
+                    TaxContain.Add(type);
+                }
 
                 foreach (var type in this.SRConfig.Transtypes)
                 {
@@ -93,6 +96,8 @@ namespace GlennsReportManager
             }
         }
 
+
+        //Buttons for trans types
         private void BTSRAdd_Click(object sender, RoutedEventArgs e)
         {
             TypeContain.NewTranType();
@@ -110,19 +115,19 @@ namespace GlennsReportManager
             TypeContain.StartTranDelete(sender);
         }
 
+
+
         //This function handles saving the Sales Report config data
         private void SRSaveSettings()
         {
             //Check to see if the text boxes are empty if they aren't then assign the new values to the config.
             //If they are empty the config will keep its old values as contingency.
-            if (TxtCity.Text.Length > 0){SRConfig.Citytax = decimal.Parse(TxtCity.Text);}
+            List<SRTaxBracket> brackets = new List<SRTaxBracket>();
 
-
-            if (TxtState.Text.Length > 0){SRConfig.Statetax = decimal.Parse(TxtState.Text);}
-
-            if (TxtCounty.Text.Length > 0){ SRConfig.Countytax = decimal.Parse(TxtCounty.Text); }
-
-            if (TxtPP.Text.Length <= 0){SRConfig.Pprtatax = decimal.Parse(TxtPP.Text); }
+            foreach (UserControls.TaxBracketItem ele in TaxContain.SPData.Children)
+            {
+                brackets.Add(new SRTaxBracket(ele.Name, ele.Rate));
+            }
 
             List<SRTransType> types = new List<SRTransType>();
 
@@ -133,41 +138,28 @@ namespace GlennsReportManager
 
             SRConfig.Transtypes.Clear();
             SRConfig.Transtypes = types;
+            SRConfig.TaxBrackets.Clear();
+            SRConfig.TaxBrackets = brackets;
             string rawjson = JsonConvert.SerializeObject(SRConfig);
             File.WriteAllText("data/config/sreportcfg.json", rawjson);
         }
 
-        private void TxtState_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void BTSRTAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (!Helper.IsTextAllowed(e.Text))
-            {
-                SystemSounds.Exclamation.Play();
-                e.Handled = true;
-                return;
-            }
+            TaxContain.NewTaxType();
             EditMade = true;
         }
 
-        private void TxtState_Pasting(object sender, DataObjectPastingEventArgs e)
+        private void BTSRTEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (e.DataObject.GetDataPresent(typeof(String)))
-            {
-                String text = (String)e.DataObject.GetData(typeof(String));
-                if (!Helper.IsTextAllowed(text))
-                {
-                    SystemSounds.Exclamation.Play();
-                    e.CancelCommand();
-                }
-                EditMade = true;
-            }
-            else
-            {
-                e.CancelCommand();
-            }
-
+            TaxContain.StartTaxEdit();
+            
         }
 
-
-
+        private void BTSRTDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TaxContain.StartTaxDelete(sender);
+            EditMade = true;
+        }
     }
 }

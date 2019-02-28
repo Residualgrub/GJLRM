@@ -8,10 +8,7 @@ namespace GlennsReportManager
     //This is the main container for the Sales Report config data
     public class SRConfigData
     {
-        public decimal Statetax { get; set; }
-        public decimal Countytax { get; set; }
-        public decimal Citytax { get; set; }
-        public decimal Pprtatax { get; set; }
+        public List<SRTaxBracket> TaxBrackets { get; set; }
         public List<SRTransType> Transtypes { get; set; }
 
 
@@ -34,5 +31,19 @@ namespace GlennsReportManager
             this.Minimum = minimum;
 
         }
+    }
+
+    //This is the container class for sales tax brackets
+    public class SRTaxBracket
+    {
+        public string Name { get; set; }
+        public decimal Percent { get; set; }
+
+        public SRTaxBracket(string name, decimal percent)
+        {
+            this.Name = name;
+            this.Percent = percent;
+        }
+
     }
 }
