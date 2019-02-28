@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="GlennsReportManager.UserControls.DataContainerWide"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GlennsReportManager.UserControls"
+             mc:Ignorable="d" 
+             Name="Dcontainwide"
+             d:DesignHeight="500" d:DesignWidth="1000">
+    <Viewbox Stretch="Uniform">
+        <Grid Background="#009ffb">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1000"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="450"/>
+            </Grid.RowDefinitions>
+            <!--Title Header-->
+            <TextBlock x:Name="LBLTitle" Text="" Foreground="White" VerticalAlignment="Center" FontSize="30" Margin="10 0 0 0"/>
+
+            <!--Data Container-->
+            <ScrollViewer Grid.Column="0" Grid.Row="1" Background="#3b393a">
+                <StackPanel x:Name="SPData" Orientation="Vertical">
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <TextBlock x:Name="LBLNoData" Text="No Data" Foreground="White" Background="#009ffb" FontSize="35" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" TextAlignment="Center"/>
+        </Grid>
+    </Viewbox>
+</UserControl>

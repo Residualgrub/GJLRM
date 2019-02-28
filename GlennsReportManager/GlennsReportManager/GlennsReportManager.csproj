@@ -56,6 +56,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +80,10 @@
     <Compile Include="Backup.xaml.cs">
       <DependentUpon>Backup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="backuphelp.xaml.cs">
+      <DependentUpon>backuphelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\BackUpData.cs" />
     <Compile Include="DataClasses\JsonFileBackUpData.cs" />
     <Compile Include="DataClasses\SRConfigData.cs" />
     <Compile Include="Modules\DBManager.cs" />
@@ -109,6 +115,12 @@
     <Compile Include="UserControls\DataContainer.xaml.cs">
       <DependentUpon>DataContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DataContainerWide.xaml.cs">
+      <DependentUpon>DataContainerWide.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DriveItem.xaml.cs">
+      <DependentUpon>DriveItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TaxBracketItem.xaml.cs">
       <DependentUpon>TaxBracketItem.xaml</DependentUpon>
     </Compile>
@@ -116,6 +128,10 @@
       <DependentUpon>TTypeItem.xaml</DependentUpon>
     </Compile>
     <Page Include="Backup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="backuphelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,6 +175,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DataContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DataContainerWide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DriveItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,6 +241,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>grmdb.mdf</DependentUpon>
     </Content>
+    <Resource Include="Icons\information.ico" />
     <Resource Include="Icons\book_add.ico" />
     <Resource Include="Icons\book_edit.ico" />
     <Resource Include="Icons\cog_add.ico" />

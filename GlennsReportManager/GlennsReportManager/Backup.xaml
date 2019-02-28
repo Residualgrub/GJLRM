@@ -6,14 +6,42 @@
         xmlns:local="clr-namespace:GlennsReportManager"
         xmlns:UserControls="clr-namespace:GlennsReportManager.UserControls"
         mc:Ignorable="d"
-        Title="GJRM: BackUp" Height="500" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="GJLRM: BackUp" Height="530" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="395"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="482*"/>
         </Grid.ColumnDefinitions>
+        <!--Back info and Refresh But-->
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0 5 0 0" Grid.ColumnSpan="2">
+            <TextBlock Text="Last Backup:" FontSize="16" Margin="12 0 0 0"  />
+            <TextBox Name="TXTBackDate" Height="22" Width="200" Margin="5 0 0 0" IsEnabled="False" FontSize="16" Text="This is a test">
+                <TextBox.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
+                </TextBox.Background>
+            </TextBox>
+            <Button Name="BTRefresh" Content="Refresh Drive List" Padding="10 0 10 0" Margin="360 0 0 0" Click="BTRefresh_Click"/>
+        </StackPanel>
+        <!--Data Container-->
+        <UserControls:DataContainerWide x:Name="DriveContain" Grid.Column="0" Grid.Row="1" Margin="0 10 0 0"/>
+        <!--Progress Elements-->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Visibility="Collapsed">
+            <TextBox Name="TXTStep" Height="18" Width="200" IsEnabled="False" Margin="12 0 0 0"/>
+            <ProgressBar Name="PBBar" Height="18" Width="200" Margin="370 0 0 0"/>
+        </StackPanel>
+        
+        <!--Buttons-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <Button Name="BTBack" Content="Start Backup" Margin="12 10 0 10" Padding="5 0 5 0" Click="BTBack_Click"/>
+            <Button Name="BTRestore" Content="Restore From Backup" Margin="12 10 0 10" Padding="5 0 5 0"/>
+            <Button Name="BTHow" Margin="12 10 0 10" Padding="5 0 5 0">
+                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="./Icons/information.ico" Width="16" Height="16"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
