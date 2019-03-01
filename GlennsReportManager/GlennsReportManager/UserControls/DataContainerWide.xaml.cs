@@ -70,26 +70,16 @@ namespace GlennsReportManager.UserControls
         public List<Drives> GetSelectedDrives()
         {
             List<Drives> SelectedDrives = new List<Drives>();
-            try
+            
+            foreach(DriveItem drive in SPData.Children)
             {
-                if (SPData.Children.Count <= 0){throw new System.NullReferenceException("No drives detected! Can't Complete backup.");}
-                foreach(DriveItem drive in SPData.Children)
+                if (drive.Selected)
                 {
-                    if (drive.Selected)
-                    {
-                        SelectedDrives.Add(new Drives(drive.VolName, drive.DLetter, drive.Freespace));
-                    }
+                    SelectedDrives.Add(new Drives(drive.VolName, drive.DLetter, drive.Freespace));
                 }
+            }
 
-                return SelectedDrives;
-            }
-            catch (Exception ex)
-            {
-                
-                SystemSounds.Exclamation.Play();
-                System.Windows.Forms.MessageBox.Show(ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                return null;
-            }
+            return SelectedDrives;
 
         }
     }

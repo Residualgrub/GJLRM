@@ -46,5 +46,10 @@ namespace GlennsReportManager
 
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
         }
+
+        public static int Remap(int val, int Start1, int Start2, int End1, int End2)
+        {
+            return (val - Start1) / (End1 - Start1) * (End2 - Start2) + Start2;
+        }
     }
 }
