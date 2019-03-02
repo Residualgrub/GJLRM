@@ -36,12 +36,14 @@ namespace GlennsReportManager
             worker.WorkerReportsProgress = true;
         }
 
+        //Refreshes the list of removable drives
         private void BTRefresh_Click(object sender, RoutedEventArgs e)
         {
             LoadDrives();
         }
 
 
+        //Refreshes the list of removable drives
         private void LoadDrives()
         {
             DriveContain.Clear();
@@ -59,6 +61,7 @@ namespace GlennsReportManager
             DriveContain.CheckForDrives();
         }
 
+        //Starts the backup process
         private void BTBack_Click(object sender, RoutedEventArgs e)
         {
             var SelectedDrives = DriveContain.GetSelectedDrives();
@@ -67,7 +70,7 @@ namespace GlennsReportManager
             {
                 if (SelectedDrives.Count <= 0) { throw new NullReferenceException("No drives are selected! Please select at least one drive."); }
 
-                worker.RunWorkerAsync();
+                worker.RunWorkerAsync(argument: SelectedDrives);
 
             }
             catch (Exception ex)
@@ -85,6 +88,7 @@ namespace GlennsReportManager
             //Find all directories in the data folder
             string[] dirs = Directory.GetDirectories(@".\", "*", SearchOption.AllDirectories);
             List<string> files = new List<string>();
+            var drives = e.Argument;
             foreach (string Direct in dirs)
             {
                 BDirectories.Add(Direct);
@@ -98,15 +102,22 @@ namespace GlennsReportManager
 
             worker.ReportProgress(25);
             int curfile = 0;
-            using (ZipArchive zip = ZipFile.Open("backup.zip", ZipArchiveMode.Create))
+            using (ZipArchive zip = ZipFile.Open("gjlrm_backup_" + DateTime.Today.ToString("dd-MM-yyyy") + ".zip", ZipArchiveMode.Create))
             {
                 foreach (string file in files)
                 {
                     curfile += 1;
-                    worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count, 75));
+                    worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count + 2, 75));
                     zip.CreateEntryFromFile(file, file);
                 }
+                curfile += 1;
+                worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count + 2, 75));
+                zip.CreateEntryFromFile("grmdb.mdf", "grmdb.mdf");
+                curfile += 1;
+                worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count + 2, 75));
+                zip.CreateEntryFromFile("grmdb_log.ldf", "grmdb_log.ldf");
             }
+
 
         }
 

@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using Newtonsoft.Json;
 namespace GlennsReportManager.UserControls
 {
     /// <summary>
@@ -36,6 +35,19 @@ namespace GlennsReportManager.UserControls
             this.Selected = false;
             LBLVolume.Text = this.DLetter + " " + this.VolName;
             LBLSpace.Text = Helper.FormatBytes(this.Freespace) + "/" + Helper.FormatBytes(this.TotalSpace);
+
+            LBLBack.Text = "No Back Up";
+            if (Directory.Exists(this.DLetter + @"gjlrmdata\"))
+            {
+                var info = new DirectoryInfo(this.DLetter + "gjlrmdata");
+
+                foreach (var file in info.GetFiles("*"))
+                {
+                    if (file.Name.Contains("gjlrm_backup")){
+                        LBLBack.Text = "Last Back Up:\n " + file.Name.Substring(13, 10);
+                    }
+                }
+            }
         }
 
         private void CKSele_Click(object sender, RoutedEventArgs e)
