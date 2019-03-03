@@ -20,4 +20,18 @@ namespace GlennsReportManager
             this.FreeSpace = free;
         }
     }
+
+    public class BackUpManifest
+    {
+        public string VerInfo { get; set; }
+        public List<string> Files { get; set;}
+        public List<string> Directories { get; set;}
+        public BackUpManifest(string verinfo, List<string> files, List<string> directories)
+        {
+            this.VerInfo = verinfo;
+            this.Files = files;
+            this.Directories = directories;
+
+        }
+    }
 }

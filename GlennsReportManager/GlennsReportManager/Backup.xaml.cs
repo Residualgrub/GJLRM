@@ -16,14 +16,15 @@ using Newtonsoft.Json;
 using System.Media;
 using System.IO.Compression;
 using System.ComponentModel;
+using System.Reflection;
 namespace GlennsReportManager
 {
-    //Working on multi threading the backup process
-    //Try to make the UI update properly
+
     public partial class Backup : Window
     {
         public List<string> BDirectories = new List<string>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
+
         public Backup()
         {
             InitializeComponent();
@@ -82,13 +83,18 @@ namespace GlennsReportManager
 
         }
 
-
+        //TODO: The main portion of the backup work is done. The final clean up and updating of the UI plus error reporting needs to be completed.
         private void ZipBackgroundWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             //Find all directories in the data folder
             string[] dirs = Directory.GetDirectories(@".\", "*", SearchOption.AllDirectories);
             List<string> files = new List<string>();
-            var drives = e.Argument;
+            List<Drives> drives = new List<Drives>();
+            drives = (List <Drives>)e.Argument;
+
+            NewText("Scanning Directories");
+
+            //We need to scan for all sub folders and files in the data directory so we know what we need to backup
             foreach (string Direct in dirs)
             {
                 BDirectories.Add(Direct);
@@ -99,26 +105,55 @@ namespace GlennsReportManager
                     files.Add(string.Format(@"{0}\{1}", Direct, file.Name));
                 }
             }
-
+            files.Add("grmdb.mdf");
+            files.Add("grmdb_log.ldf");
             worker.ReportProgress(25);
             int curfile = 0;
-            using (ZipArchive zip = ZipFile.Open("gjlrm_backup_" + DateTime.Today.ToString("dd-MM-yyyy") + ".zip", ZipArchiveMode.Create))
+            string filename = "gjlrm_backup_" + DateTime.Today.ToString("dd-MM-yyyy") + ".zip";
+            if (File.Exists(filename)) { File.Delete(filename); } //Make sure there isn't a backup file of the same name already in directory.
+
+
+            using (ZipArchive zip = ZipFile.Open(filename, ZipArchiveMode.Create))//Loop through all of our files and load them into the zip directory
             {
                 foreach (string file in files)
                 {
                     curfile += 1;
-                    worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count + 2, 75));
+                    worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count, 75));
+                    var fname = System.IO.Path.GetFileName(file);
+                    NewText("Compressing " + fname);
                     zip.CreateEntryFromFile(file, file);
+                    
                 }
-                curfile += 1;
-                worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count + 2, 75));
-                zip.CreateEntryFromFile("grmdb.mdf", "grmdb.mdf");
-                curfile += 1;
-                worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count + 2, 75));
-                zip.CreateEntryFromFile("grmdb_log.ldf", "grmdb_log.ldf");
+
+                //We need to make the backup manifest
+                NewText("Writing Manifest");
+                string ver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                BackUpManifest Manifest = new BackUpManifest(ver, files, BDirectories);
+                string rawjson = JsonConvert.SerializeObject(Manifest);
+                File.WriteAllText("manifest.json", rawjson);
+                zip.CreateEntryFromFile("manifest.json", "manifest.json");
             }
 
+            long length = new System.IO.FileInfo(filename).Length;
 
+            //This starts the operation of moving the back up to the selected drives
+            foreach (Drives drive in drives)
+            {
+                if (drive.FreeSpace > length)//We need to make sure the drive has enough space for the back up.
+                {
+                    NewText("Backing Up To " + drive.VolLable);
+                    string direct = drive.Letter + "gjlrmdata";
+                    if (Directory.Exists(direct)) { Directory.Delete(direct, true); }
+                    Directory.CreateDirectory(direct);
+                    File.Copy(filename, drive.Letter + @"gjlrmdata\" + filename);
+
+                }
+
+            }
+
+            NewText("Cleaning Up");
+            File.Delete(filename);
+            File.Delete("manifest.json");
         }
 
         private void ZipWorkProgress(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -131,5 +166,13 @@ namespace GlennsReportManager
         {
 
         }
+
+
+        private void NewText(string msg)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => { TXTStep.Text = msg; }));
+        }
+
+        
     }
 }
