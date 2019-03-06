@@ -87,6 +87,7 @@ namespace GlennsReportManager
         private void ZipBackgroundWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             //Find all directories in the data folder
+            BackupReport report = new BackupReport();
             string[] dirs = Directory.GetDirectories(@".\", "*", SearchOption.AllDirectories);
             List<string> files = new List<string>();
             List<Drives> drives = new List<Drives>();
@@ -147,6 +148,10 @@ namespace GlennsReportManager
                     Directory.CreateDirectory(direct);
                     File.Copy(filename, drive.Letter + @"gjlrmdata\" + filename);
 
+                }
+                else
+                {
+                    report.minor.Add(string.Format("{0}{1}"));
                 }
 
             }

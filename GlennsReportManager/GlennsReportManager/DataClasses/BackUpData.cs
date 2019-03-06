@@ -34,4 +34,11 @@ namespace GlennsReportManager
 
         }
     }
+
+    public class BackupReport
+    {
+        public List<string> minor = new List<string>();
+        public List<string> major = new List<string>();
+
+    }
 }
