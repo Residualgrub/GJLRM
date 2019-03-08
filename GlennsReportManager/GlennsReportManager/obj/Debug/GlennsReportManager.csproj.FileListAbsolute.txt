@@ -109,3 +109,7 @@ D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\Dr
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\backuphelp.baml
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainerWide.baml
 D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DriveItem.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\LoadingWindow.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\LoadingWindow.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\WpfAnimatedGif.dll
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\WpfAnimatedGif.xml

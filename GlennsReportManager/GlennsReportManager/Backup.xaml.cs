@@ -36,6 +36,7 @@ namespace GlennsReportManager
             worker.RunWorkerCompleted += ZipWorkDone;
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
+            TXTBackDate.Text = Properties.Settings.Default.LastBackup;
         }
 
         //Refreshes the list of removable drives
@@ -140,7 +141,7 @@ namespace GlennsReportManager
             }
 
             int curfile = 0;
-            string filename = "gjlrm_backup_" + DateTime.Today.ToString("dd-MM-yyyy") + ".zip";
+            string filename = "gjlrm_backup_" + DateTime.Today.ToString("MM-dd-yyyy") + ".zip";
 
             if (ShouldCanWork())
             {
@@ -260,9 +261,9 @@ namespace GlennsReportManager
         private void ZipWorkDone(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             BackupReport report = (BackupReport) e.Result;
-            if (e.Cancelled)
+            if (e.Cancelled)//Was the op canned?
             {
-                if (report.success.Count > 0)
+                if (report.success.Count > 0)//Even though it was canned did we still have some backups completed?
                 {
                     var msg = "";
                     foreach (var drive in report.success)
@@ -277,10 +278,10 @@ namespace GlennsReportManager
                     System.Windows.Forms.MessageBox.Show("The back up was canceled.", "Success!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
                 }
             }
-            else
+            else//Was the op completed?
             {
 
-                if (report.major.Count > 0)
+                if (report.major.Count > 0)//Was it ended because of a major error?
                 {
                     SystemSounds.Exclamation.Play();
                     System.Windows.Forms.MessageBox.Show(report.major[0], "Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
@@ -288,14 +289,19 @@ namespace GlennsReportManager
                 else
                 {
                     var msg = "The Operation has completed. \n \n";
-
                     if (report.success.Count > 0)
                     {
                         foreach (var drive in report.success)
                         {
                             msg += drive + " ";
                         }
-                        msg += "were successfully backed up!";
+                        var word = "was ";
+                        if (report.success.Count > 1) { word = "were "; }
+
+                        msg += word + "successfully backed up!";
+                        Properties.Settings.Default.LastBackup = DateTime.Today.ToString("MM-dd-yyyy");
+                        Properties.Settings.Default.Save();
+                        TXTBackDate.Text = Properties.Settings.Default.LastBackup; 
                     }
                    
                     if (report.minor.Count > 0)
@@ -312,6 +318,7 @@ namespace GlennsReportManager
                 }
 
             }
+            LoadDrives();
 
         }
 

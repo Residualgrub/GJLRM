@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\grmdb.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
+    <Setting Name="LastBackup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No Backup</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

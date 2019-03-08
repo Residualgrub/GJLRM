@@ -71,6 +71,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -86,6 +89,9 @@
     <Compile Include="DataClasses\BackUpData.cs" />
     <Compile Include="DataClasses\JsonFileBackUpData.cs" />
     <Compile Include="DataClasses\SRConfigData.cs" />
+    <Compile Include="LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\DBManager.cs" />
     <Compile Include="grmdbData.cs">
       <DependentUpon>grmdbData.xsd</DependentUpon>
@@ -136,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GBReport\gbrmain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,6 +251,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>grmdb.mdf</DependentUpon>
     </Content>
+    <Resource Include="images\loading.gif" />
+    <Resource Include="images\loadbg.png" />
     <Resource Include="Icons\information.ico" />
     <Resource Include="Icons\book_add.ico" />
     <Resource Include="Icons\book_edit.ico" />

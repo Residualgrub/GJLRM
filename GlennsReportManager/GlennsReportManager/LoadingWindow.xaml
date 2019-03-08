@@ -1,0 +1,25 @@
+﻿<Window x:Class="GlennsReportManager.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:GlennsReportManager"
+        mc:Ignorable="d"
+        Title="LoadingWindow" Height="230" Width="437" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="images/loadbg.png"/>
+    </Window.Background>
+    <Grid Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180*"/>
+            <ColumnDefinition Width="257*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="TXTLoad" Text="Connecting to Database" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="24" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+        <Image gif:ImageBehavior.AnimatedSource="images/loading.gif" Grid.Row="1" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

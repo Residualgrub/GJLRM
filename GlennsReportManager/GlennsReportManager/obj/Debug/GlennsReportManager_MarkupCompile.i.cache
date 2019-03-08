@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\
 GlennsReportManager
 none
 false
 DEBUG;TRACE
-D:\Prodj\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
-14-1927906493
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
+151072666909
 2-272440386
-30529378080
-18-1064986133
-Backup.xaml;backuphelp.xaml;GBReport\gbrmain.xaml;MainWindow.xaml;settings.xaml;SReport\SRConfigTaxAddEditWindow.xaml;SReport\SRConfigTranAddEditWindow.xaml;SReport\SREditor.xaml;SReport\SReportMain.xaml;UserControls\DataContainer.xaml;UserControls\DataContainerWide.xaml;UserControls\DriveItem.xaml;UserControls\TaxBracketItem.xaml;UserControls\TTypeItem.xaml;
+31668541732
+19650931656
+Backup.xaml;backuphelp.xaml;GBReport\gbrmain.xaml;LoadingWindow.xaml;MainWindow.xaml;settings.xaml;SReport\SRConfigTaxAddEditWindow.xaml;SReport\SRConfigTranAddEditWindow.xaml;SReport\SREditor.xaml;SReport\SReportMain.xaml;UserControls\DataContainer.xaml;UserControls\DataContainerWide.xaml;UserControls\DriveItem.xaml;UserControls\TaxBracketItem.xaml;UserControls\TTypeItem.xaml;
 splashscreen1.png
-True
+False
 

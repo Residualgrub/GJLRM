@@ -33,5 +33,17 @@ namespace GlennsReportManager.Properties {
                 return ((string)(this["grmdbkey"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("No Backup")]
+        public string LastBackup {
+            get {
+                return ((string)(this["LastBackup"]));
+            }
+            set {
+                this["LastBackup"] = value;
+            }
+        }
     }
 }
