@@ -35,6 +35,7 @@ namespace GlennsReportManager
             worker.ProgressChanged += ZipWorkProgress;
             worker.RunWorkerCompleted += ZipWorkDone;
             worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
         }
 
         //Refreshes the list of removable drives
@@ -83,79 +84,168 @@ namespace GlennsReportManager
 
         }
 
-        //TODO: The main portion of the backup work is done. The final clean up and updating of the UI plus error reporting needs to be completed.
+        //This function is the work horse for the backup operation itself.
+        //It handles scanning for files, zipping, and transfering the backups
+        //I am using multiple try statements in here to encase different aspects of the operation as different actions need to be taken to recover from an error.
+        //There are cancel monitoring statements in every loop and transition between try statements
         private void ZipBackgroundWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+
             //Find all directories in the data folder
             BackupReport report = new BackupReport();
             string[] dirs = Directory.GetDirectories(@".\", "*", SearchOption.AllDirectories);
             List<string> files = new List<string>();
             List<Drives> drives = new List<Drives>();
-            drives = (List <Drives>)e.Argument;
+            drives = (List<Drives>)e.Argument;
 
-            NewText("Scanning Directories");
-
-            //We need to scan for all sub folders and files in the data directory so we know what we need to backup
-            foreach (string Direct in dirs)
+            if (ShouldCanWork())
             {
-                BDirectories.Add(Direct);
-                DirectoryInfo d = new DirectoryInfo(Direct);
-
-                foreach (var file in d.GetFiles("*"))
-                {
-                    files.Add(string.Format(@"{0}\{1}", Direct, file.Name));
-                }
+                EndWork("", e);
+                e.Result = report;
+                return;
             }
-            files.Add("grmdb.mdf");
-            files.Add("grmdb_log.ldf");
-            worker.ReportProgress(25);
+
+            //Try statement for scanning directories
+            try
+            { 
+
+                NewText("Scanning Directories");
+
+                //We need to scan for all sub folders and files in the data directory so we know what we need to backup
+                foreach (string Direct in dirs)
+                {
+                    BDirectories.Add(Direct);
+                    DirectoryInfo d = new DirectoryInfo(Direct);
+
+                    foreach (var file in d.GetFiles("*"))
+                    {
+                        files.Add(string.Format(@"{0}\{1}", Direct, file.Name));
+                        if (ShouldCanWork()){
+                            EndWork("", e);
+                            e.Result = report;
+                            return;
+                        }
+                    }
+                }
+                files.Add("grmdb.mdf");
+                files.Add("grmdb_log.ldf");
+                worker.ReportProgress(25);
+            }
+            catch (Exception er)
+            {
+                report.major.Add("There was an un-recoverable error while scanning for files! Error: " + er.GetType().ToString() + " " + er.Message);
+                EndWork("");
+                e.Result = report;
+                return;
+            }
+
             int curfile = 0;
             string filename = "gjlrm_backup_" + DateTime.Today.ToString("dd-MM-yyyy") + ".zip";
-            if (File.Exists(filename)) { File.Delete(filename); } //Make sure there isn't a backup file of the same name already in directory.
 
-
-            using (ZipArchive zip = ZipFile.Open(filename, ZipArchiveMode.Create))//Loop through all of our files and load them into the zip directory
+            if (ShouldCanWork())
             {
-                foreach (string file in files)
-                {
-                    curfile += 1;
-                    worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count, 75));
-                    var fname = System.IO.Path.GetFileName(file);
-                    NewText("Compressing " + fname);
-                    zip.CreateEntryFromFile(file, file);
-                    
-                }
+                EndWork(filename, e);
+                e.Result = report;
+                return;
+            }
 
-                //We need to make the backup manifest
-                NewText("Writing Manifest");
-                string ver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                BackUpManifest Manifest = new BackUpManifest(ver, files, BDirectories);
-                string rawjson = JsonConvert.SerializeObject(Manifest);
-                File.WriteAllText("manifest.json", rawjson);
-                zip.CreateEntryFromFile("manifest.json", "manifest.json");
+            //Try statement for zip compression
+            try
+            {
+                
+                if (File.Exists(filename)) { File.Delete(filename); } //Make sure there isn't a backup file of the same name already in directory.
+
+
+                using (ZipArchive zip = ZipFile.Open(filename, ZipArchiveMode.Create))//Loop through all of our files and load them into the zip directory
+                {
+                    foreach (string file in files)
+                    {
+                        if (ShouldCanWork())
+                        {
+                            EndWork(filename, e);
+                            return;
+                        }
+                        curfile += 1;
+                        worker.ReportProgress(Helper.Remap(curfile, 0, 25, files.Count, 75));
+                        var fname = System.IO.Path.GetFileName(file);
+                        NewText("Compressing " + fname);
+                        zip.CreateEntryFromFile(file, file);
+                    }
+                    //We need to make the backup manifest
+                    NewText("Writing Manifest");
+                    string ver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                    BackUpManifest Manifest = new BackUpManifest(ver, files, BDirectories);
+                    string rawjson = JsonConvert.SerializeObject(Manifest);
+                    File.WriteAllText("manifest.json", rawjson);
+                    zip.CreateEntryFromFile("manifest.json", "manifest.json");
+                }
+            }
+            catch (Exception er)
+            {
+                report.major.Add("There was an un-recoverable error while compressing files! Error: " + er.GetType().ToString() + " " + er.Message);
+                EndWork(filename);
+                e.Result = report;
+                return;
             }
 
             long length = new System.IO.FileInfo(filename).Length;
 
-            //This starts the operation of moving the back up to the selected drives
-            foreach (Drives drive in drives)
+            if (ShouldCanWork())
             {
-                if (drive.FreeSpace > length)//We need to make sure the drive has enough space for the back up.
-                {
-                    NewText("Backing Up To " + drive.VolLable);
-                    string direct = drive.Letter + "gjlrmdata";
-                    if (Directory.Exists(direct)) { Directory.Delete(direct, true); }
-                    Directory.CreateDirectory(direct);
-                    File.Copy(filename, drive.Letter + @"gjlrmdata\" + filename);
-
-                }
-                else
-                {
-                    report.minor.Add(string.Format("{0}{1}"));
-                }
-
+                EndWork(filename, e);
+                e.Result = report;
+                return;
             }
 
+            //Try statement for backup transfer
+            try
+            {
+
+                //This starts the operation of moving the back up to the selected drives
+                foreach (Drives drive in drives)
+                {
+                    if (drive.FreeSpace > length)//We need to make sure the drive has enough space for the back up.
+                    {
+                        if (ShouldCanWork())
+                        {
+                            EndWork(filename, e);
+                            return;
+                        }
+
+                        NewText("Backing Up To " + drive.VolLable);
+                        string direct = drive.Letter + "gjlrmdata";
+                        if (Directory.Exists(direct)) {
+                            DirectoryInfo d = new DirectoryInfo(direct);
+
+                            foreach (var file in d.GetFiles())
+                            {
+                                File.Delete(direct + @"\" + file.Name);
+                            }
+                        }
+                        else
+                        {
+                            Directory.CreateDirectory(direct);
+                        }
+                        File.Copy(filename, drive.Letter + @"gjlrmdata\" + filename);
+                        report.success.Add(drive.Letter + drive.VolLable);
+                    }
+                    else
+                    {
+                        report.minor.Add(string.Format("{0}{1} does not have enough space for the backup! Current space: {2} Needed Space: {3}", 
+                            drive.Letter, drive.VolLable, Helper.FormatBytes(drive.FreeSpace), Helper.FormatBytes(length)));
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+                report.major.Add("There was an un-recoverable error while backing up to drives! Error: " + er.GetType().ToString() + " " + er.Message);
+                EndWork(filename);
+                e.Result = report;
+                return;
+            }
+
+            e.Result = report;
             NewText("Cleaning Up");
             File.Delete(filename);
             File.Delete("manifest.json");
@@ -169,15 +259,87 @@ namespace GlennsReportManager
 
         private void ZipWorkDone(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            BackupReport report = (BackupReport) e.Result;
+            if (e.Cancelled)
+            {
+                if (report.success.Count > 0)
+                {
+                    var msg = "";
+                    foreach (var drive in report.success)
+                    {
+                        msg += "\n" + drive + " was sucesfully backed up!";
+                    }
+                    SystemSounds.Question.Play();
+                    System.Windows.Forms.MessageBox.Show("The back up was canceled however some back up operations where already completed." + msg, "Success!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("The back up was canceled.", "Success!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+
+                if (report.major.Count > 0)
+                {
+                    SystemSounds.Exclamation.Play();
+                    System.Windows.Forms.MessageBox.Show(report.major[0], "Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var msg = "The Operation has completed. \n \n";
+
+                    if (report.success.Count > 0)
+                    {
+                        foreach (var drive in report.success)
+                        {
+                            msg += drive + " ";
+                        }
+                        msg += "were successfully backed up!";
+                    }
+                   
+                    if (report.minor.Count > 0)
+                    {
+                        msg += "\n Some minor errors did occur during the operaton.";
+
+                        foreach (var er in report.minor)
+                        {
+                            msg += "\n" + er;
+                        }
+                    }
+                    SystemSounds.Asterisk.Play();
+                    System.Windows.Forms.MessageBox.Show(msg, "Operation Completed!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                }
+
+            }
 
         }
 
+        // Window specific helper functions 
 
         private void NewText(string msg)
         {
             Application.Current.Dispatcher.BeginInvoke(new Action(() => { TXTStep.Text = msg; }));
         }
 
-        
+        private bool ShouldCanWork()
+        {
+            return worker.CancellationPending;
+        }
+
+        private void EndWork(string zip, System.ComponentModel.DoWorkEventArgs e)
+        {
+            if (File.Exists(zip)) { File.Delete(zip); }
+            if (File.Exists("manifest.json")) { File.Delete("manifest.json"); }
+            e.Cancel = true;
+            worker.ReportProgress(0);
+        }
+
+        private void EndWork(string zip)
+        {
+            if (File.Exists(zip)) { File.Delete(zip); }
+            if (File.Exists("manifest.json")) { File.Delete("manifest.json"); }
+            worker.ReportProgress(0);
+        }
     }
 }
