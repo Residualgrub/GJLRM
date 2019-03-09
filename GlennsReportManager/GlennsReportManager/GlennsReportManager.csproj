@@ -124,8 +124,14 @@
     <Compile Include="UserControls\DataContainerWide.xaml.cs">
       <DependentUpon>DataContainerWide.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DataContainerWideHeader.xaml.cs">
+      <DependentUpon>DataContainerWideHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DriveItem.xaml.cs">
       <DependentUpon>DriveItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SRTranItem.xaml.cs">
+      <DependentUpon>SRTranItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TaxBracketItem.xaml.cs">
       <DependentUpon>TaxBracketItem.xaml</DependentUpon>
@@ -192,7 +198,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\DataContainerWideHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\DriveItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SRTranItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

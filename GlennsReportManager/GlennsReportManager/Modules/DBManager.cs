@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace GlennsReportManager
 {
-    class DBManager
+    public class DBManager
     {
         private SqlConnection DBConn = new SqlConnection();
 

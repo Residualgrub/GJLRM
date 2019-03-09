@@ -6,7 +6,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:GlennsReportManager"
         mc:Ignorable="d"
-        Title="LoadingWindow" Height="230" Width="437" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="LoadingWindow" Height="230" Width="437" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
     <Window.Background>
         <ImageBrush ImageSource="images/loadbg.png"/>
     </Window.Background>
@@ -19,7 +19,7 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Name="TXTLoad" Text="Connecting to Database" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="24" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+        <TextBlock Name="LBLLoad" Text="Connecting to Database" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="24" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
         <Image gif:ImageBehavior.AnimatedSource="images/loading.gif" Grid.Row="1" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

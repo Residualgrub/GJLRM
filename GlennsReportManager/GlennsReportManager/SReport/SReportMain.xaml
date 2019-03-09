@@ -49,10 +49,10 @@
                 <!--Bottom Options-->
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
                     <Button Name="BNTNew" Content="New Report" Padding="20 0 20 0" Margin="0 10 0 10" Click="BNTNew_Click"/>
-                    <Button Name="BNTImport" Content="Import Report" Padding="20 0 20 0" Margin="10 10 0 10" Click="BNTNew_Click"/>
+                    <Button Name="BNTView" Content="View Report" Padding="20 0 20 0" Margin="10 10 0 10" Click="BNTView_Click"/>
                     <TextBlock Margin="285 0 0 0" Text="Report Years:" VerticalAlignment="Center"/>
                     <ComboBox Name="CMBYear" Margin="5 10 0 10"/>
-                    <Button Name="BNTSearch" Content="Search Year" Padding="20 0 20 0" Margin="10 10 0 10"/>
+                    <Button Name="BNTSearch" Content="Search Year" Padding="20 0 20 0" Margin="10 10 0 10" Click="BNTSearch_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

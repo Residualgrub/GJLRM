@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="GlennsReportManager.UserControls.SRTranItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GlennsReportManager.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="1000">
+        <Viewbox Stretch="UniformToFill">
+        <Grid Background="#009ffb" Width="1000" Height="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <CheckBox x:Name="CKSele" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <TextBlock Name="LBLEM" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="Repair" FontSize="20" TextAlignment="Center" TextWrapping="Wrap" />
+            <TextBlock Name="LBLDate" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="3-Apr" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLType" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="Repair" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLCust" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="Richard Cromwell" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLSale" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="$250.00" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLCost" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="$40.00" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLLabor" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="-" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLMargin" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="$210.00" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Name="LBLProfit" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="0.840%" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+
+
+
+
+        </Grid>
+    </Viewbox>
+</UserControl>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using Newtonsoft.Json;
+using System.ComponentModel;
 namespace GlennsReportManager.SReport
 {
     /// <summary>
@@ -22,50 +23,36 @@ namespace GlennsReportManager.SReport
     {
         List<SRData> Data = new List<SRData>();
         List<int> Years = new List<int>();
-        DBManager DB = new DBManager();
         SRConfigData Config;
         int CurYear;
+        DBManager DB { get; set; }
+        LoadingWindow load = new LoadingWindow();
+        private readonly BackgroundWorker InitWorker = new BackgroundWorker();
+        private readonly BackgroundWorker QueryWorker = new BackgroundWorker();
         public SReportMain()
         {
+            
+            InitWorker.DoWork += InitBackgroundWork;
+            InitWorker.RunWorkerCompleted += InitBackgroundWorkDone;
+            QueryWorker.DoWork += QueryBackgroundWork;
+            QueryWorker.RunWorkerCompleted += QueryBackgroundWorkDone;
             InitializeComponent();
+            load.ShowInTaskbar = false;
+            load.Show();
+
+            InitWorker.RunWorkerAsync();
+            this.IsEnabled = false;
             this.CurYear = Int16.Parse(DateTime.Now.Year.ToString());
-            this.Data = this.DB.CheckForSR(this.CurYear);
-            this.Years = this.DB.GetSRYears();
-            this.Years.Sort((x, y) => y.CompareTo(x));
-            LoadConfig();
-            InitComboBox();
-            InitDataView();
-            LblHeader.Text = string.Format("Showing Reports From {0}", CurYear.ToString());
         }
 
 
-        private void InitComboBox()
+        //UI event functions
+
+
+        private void BNTSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Years.Count <= 0)
-            {
-                CMBYear.Items.Add(2019);
-                CMBYear.SelectedIndex = 0;
-            }
-            else
-            {
-                CMBYear.ItemsSource = this.Years;
-                CMBYear.SelectedIndex = 0;
-            }
-        }
-
-
-        private void InitDataView()
-        {
-            if (this.Data.Count <= 0)
-            {
-                LBLNoData.Visibility = Visibility.Visible;
-                LBLNoData.Text = string.Format("There is no data avalible for {0}", CurYear.ToString());
-            }
-            else {
-                GDNoData.Visibility = Visibility.Hidden;
-                SVData.Visibility = Visibility.Visible;
-
-            }
+            CurYear = Int16.Parse(CMBYear.SelectedValue.ToString());
+            QueryWorker.RunWorkerAsync(argument: CurYear);
         }
 
         private void BNTNew_Click(object sender, RoutedEventArgs e)
@@ -81,10 +68,19 @@ namespace GlennsReportManager.SReport
             }
         }
 
+        private void BNTView_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+            load.Close();
         }
+
+
+
+        //Operation Functions
 
         public void LoadConfig()
         {
@@ -99,5 +95,104 @@ namespace GlennsReportManager.SReport
                 System.Windows.Forms.MessageBox.Show(string.Format("There was an error reading the configueration file! ERROR: {0}", e.Message), "Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
+
+        private void InitDataView()
+        {
+            SPReports.Children.Clear();
+            LblHeader.Text = string.Format("Showing Reports From {0}", CurYear.ToString());
+            if (this.Data.Count <= 0)
+            {
+                LBLNoData.Visibility = Visibility.Visible;
+                LBLNoData.Text = string.Format("There is no data avalible for {0}", CurYear.ToString());
+            }
+            else
+            {
+                GDNoData.Visibility = Visibility.Hidden;
+                SVData.Visibility = Visibility.Visible;
+
+            }
+        }
+
+        private void InitComboBox()
+        {
+            if (this.Years.Count <= 0)
+            {
+                CMBYear.Items.Add(2019);
+                CMBYear.SelectedIndex = 0;
+            }
+            else
+            {
+                CMBYear.ItemsSource = this.Years;
+                CMBYear.SelectedIndex = 0;
+            }
+        }
+
+        //BG Worker Functions
+
+
+        //Init Background worker
+        private void InitBackgroundWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => { load.ChnageText("Connecting To Database"); }));
+
+            DBManager DB = new DBManager();
+            int CurYear = Int16.Parse(DateTime.Now.Year.ToString());
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => { load.ChnageText("Grabbing Reports"); }));
+            List<SRData> Data = DB.CheckForSR(CurYear);
+            List<int> Years = DB.GetSRYears();
+            Years.Sort((x, y) => y.CompareTo(x));
+            SRInitData report = new SRInitData(Data, Years, DB);
+
+            e.Result = report;
+            return;
+        }
+
+        private void InitBackgroundWorkDone(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            SRInitData report = (SRInitData)e.Result;
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => {
+                this.Data = report.Srdata;
+                this.Years = report.Years;
+                this.DB = report.DB;
+                LoadConfig();
+                InitComboBox();
+                InitDataView();
+                load.Visibility = Visibility.Hidden;
+                this.IsEnabled = true;
+            }));
+        }
+
+        //Query Worker
+        private void QueryBackgroundWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int CurYear = (int)e.Argument;
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                load.Visibility = Visibility.Visible;
+                load.ChnageText("Gathering Reports");
+                this.IsEnabled = false;
+                SPReports.Children.Clear();
+            }));
+            List<SRData> Data = DB.CheckForSR(CurYear);
+
+            e.Result = Data;
+
+        }
+
+        private void QueryBackgroundWorkDone(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            List<SRData> Data = (List<SRData>)e.Result;
+
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                SPReports.Children.Clear();
+                InitDataView();
+                this.IsEnabled = true;
+                load.Visibility = Visibility.Hidden;
+            }));
+
+        }
+
+
     }
 }

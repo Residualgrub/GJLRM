@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\App.xaml
-151072666909
+17-1255647026
 2-272440386
-31668541732
+33-504314027
 19650931656
-Backup.xaml;backuphelp.xaml;GBReport\gbrmain.xaml;LoadingWindow.xaml;MainWindow.xaml;settings.xaml;SReport\SRConfigTaxAddEditWindow.xaml;SReport\SRConfigTranAddEditWindow.xaml;SReport\SREditor.xaml;SReport\SReportMain.xaml;UserControls\DataContainer.xaml;UserControls\DataContainerWide.xaml;UserControls\DriveItem.xaml;UserControls\TaxBracketItem.xaml;UserControls\TTypeItem.xaml;
+Backup.xaml;backuphelp.xaml;GBReport\gbrmain.xaml;LoadingWindow.xaml;MainWindow.xaml;settings.xaml;SReport\SRConfigTaxAddEditWindow.xaml;SReport\SRConfigTranAddEditWindow.xaml;SReport\SREditor.xaml;SReport\SReportMain.xaml;UserControls\DataContainer.xaml;UserControls\DataContainerWide.xaml;UserControls\DataContainerWideHeader.xaml;UserControls\DriveItem.xaml;UserControls\SRTranItem.xaml;UserControls\TaxBracketItem.xaml;UserControls\TTypeItem.xaml;
 splashscreen1.png
 False
 

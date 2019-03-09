@@ -23,5 +23,10 @@ namespace GlennsReportManager
         {
             InitializeComponent();
         }
+
+        public void ChnageText(string txt)
+        {
+            LBLLoad.Text = txt;
+        }
     }
 }
