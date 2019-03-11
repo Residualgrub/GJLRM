@@ -25,9 +25,39 @@ namespace GlennsReportManager.UserControls
             InitializeComponent();
         }
 
-        public void SetHeaders(List<string> headers)
+        public void BuildHeaders(List<string> headers)
+        {
+            foreach(string header in headers)
+            {
+                var lbl = new TextBlock();
+                lbl.FontSize = 16;
+                lbl.VerticalAlignment = VerticalAlignment.Center;
+                lbl.HorizontalAlignment = HorizontalAlignment.Center;
+                lbl.Text = header;
+                GRHeader.ColumnDefinitions.Add(new ColumnDefinition());
+                GRHeader.Children.Add(lbl);
+                Grid.SetColumn(lbl, GRHeader.ColumnDefinitions.Count - 1);
+            }
+        }
+
+        private void CKSele_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
+
+        //Add function for Transaction
+        public void Add(SRTran data)
+        {
+            if (LBLNoData.Visibility == Visibility.Visible)
+            {
+                LBLNoData.Visibility = Visibility.Hidden;
+            }
+            var item = new SRTranItem(data.EM, data.Date, data.Type, data.Cust, data.Sale, data.Cost, data.Labor, data.Comish, data.ComPercent, data.Tax);
+            item.Margin = new Thickness(10, 10, 10, 0);
+            SPData.Children.Add(item);
+        }
+
     }
 }

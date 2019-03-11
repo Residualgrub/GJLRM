@@ -115,3 +115,5 @@ C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\bin\Debug\WpfAnimatedGif.xml
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\SRTranItem.g.cs
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\SRTranItem.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainerWideHeader.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainerWideHeader.baml

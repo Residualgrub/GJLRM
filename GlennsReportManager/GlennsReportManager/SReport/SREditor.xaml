@@ -4,41 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.SReport"
+        xmlns:UserControls="clr-namespace:GlennsReportManager.UserControls"
         mc:Ignorable="d"
-        Title="SR: Editor" Height="600" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="SR: Editor" Height="692" Width="1050" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <DockPanel>
 
         <Border Name="BDSub" Padding="10">
             <!--Main Window Grid-->
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height=".7*"/>
-                    <RowDefinition Height="7.5*"/>
+                    <RowDefinition Height="450"/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-
-                <!--Header-->
-                <Grid Background="#009ffb" Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Margin="10 0 0 0" Name="LblHeader" Foreground="#FFF" Text="Showing Reports From" VerticalAlignment="Center" FontSize="20" Grid.Column="0"/>
-                </Grid>
-
-                <!--Data Display Elements-->
-                <ScrollViewer Name="SVData" Grid.Row="1" Background="#3b393a">
-                    <StackPanel Name="SPReports">
-                    </StackPanel>
-                </ScrollViewer>
-
-                <!--Bottom Options-->
-                <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <Button Name="BNTNew" Content="New Sale" Padding="20 0 20 0" Margin="0 10 0 10"/>
-                    <Button Name="BNTEdit" Content="Edit Sale" Padding="20 0 20 0" Margin="10 10 0 10"/>
-                    <Button Name="BNTDel" Content="Delete Selected Sales" Padding="20 0 20 0" Margin="10 10 0 10"/>
-                    <Button Name="BNTSearch" Content="Search Year" Padding="20 0 20 0" Margin="10 10 0 10"/>
+                
+                <!--Data Container-->
+                <UserControls:DataContainerWideHeader x:Name="TranContain" Grid.Column="0" Grid.Row="0" Width="1000" Height="450"/>
+                <!--Data Container Buttons-->
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Button Name="BTAdd" Padding="5" Content="Add Transaction" Margin="7 5 0 0"/>
+                    <Button Name="BTEdit" Padding="5" Content="Edit Selected Transactions" Margin="5 5 0 0"/>
+                    <Button Name="BTDel" Padding="5" Content="Delete Selected Transactions" Margin="5 5 0 0"/>
                 </StackPanel>
+                <!--Totals Grid-->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Totals Grid-->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="165"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="Total Taxable: " VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <TextBox Name="TXTTotalTax" Height="18" Width="150" Grid.Row="0" Grid.Column="1" />
+
+                        <TextBlock  Text="Total Non Taxable: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="TXTTotalNTax" Height="18" Width="150" Grid.Row="1" Grid.Column="1"/>
+
+                        <TextBlock Text="Total: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="TXTTotal" Height="18" Width="150" Grid.Row="2" Grid.Column="1" />
+                    </Grid>
+
+                    <GroupBox Grid.Column="1" Header="Taxes" BorderBrush="DarkSlateGray" Margin="0 0 50 0">
+                        <Grid Name="TaxGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Name="SPNames" Orientation="Vertical" Grid.Column="0"/>
+                            <StackPanel Name="SPBoxes" Orientation="Vertical" Grid.Column="1"/>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
             </Grid>
         </Border>
 

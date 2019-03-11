@@ -38,20 +38,17 @@ namespace GlennsReportManager
     //Class for an individual transaction
     public class SRTran
     {
-        string EM { get; set; }
-        DateTime Date { get; set; }
-        string Type { get; set; }
-        string Cust { get; set; }
-        decimal Sale { get; set; }
-        decimal Cost { get; set; }
-        decimal Labor { get; set; }
-        decimal Margin { get; set; }
-        decimal Profit { get; set; }
-        bool Comish { get; set; }
-        decimal ComPercent { get; set; }
-        bool Tax { get; set; }
-        public SRTran(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor, decimal margin, 
-            decimal profit, bool comish, decimal compercent, bool tax)
+        public string EM { get; set; }
+        public DateTime Date { get; set; }
+        public string Type { get; set; }
+        public string Cust { get; set; }
+        public decimal Sale { get; set; }
+        public decimal Cost { get; set; }
+        public decimal Labor { get; set; }
+        public bool Comish { get; set; }
+        public decimal ComPercent { get; set; }
+        public bool Tax { get; set; }
+        public SRTran(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor, bool comish, decimal compercent, bool tax)
         {
             this.EM = em;
             this.Date = date;
@@ -60,8 +57,6 @@ namespace GlennsReportManager
             this.Sale = sale;
             this.Cost = cost;
             this.Labor = labor;
-            this.Margin = margin;
-            this.Profit = profit;
             this.Comish = comish;
             this.ComPercent = compercent;
             this.Tax = tax;
@@ -72,11 +67,16 @@ namespace GlennsReportManager
     {
         public List<SRTran> Trans = new List<SRTran>();
         public List<SRTaxBracket> Taxes = new List<SRTaxBracket>();
+        public List<SRTransType> Types = new List<SRTransType>();
 
-        public SRReport( List<SRTran> trans, List<SRTaxBracket> taxes)
+        public SRReport( List<SRTran> trans, List<SRTaxBracket> taxes, List<SRTransType> types)
         {
             this.Trans = trans;
             this.Taxes = taxes;
+            this.Types = types;
+        }
+        public SRReport()
+        {
         }
     }
 }

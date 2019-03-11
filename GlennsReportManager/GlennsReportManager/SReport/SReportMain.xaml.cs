@@ -64,7 +64,10 @@ namespace GlennsReportManager.SReport
             }
             else
             {
-                
+                var editor = new SREditor();
+                this.Hide();
+                editor.ShowDialog();
+                this.Show();
             }
         }
 
