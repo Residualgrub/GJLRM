@@ -60,11 +60,17 @@ namespace GlennsReportManager.SReport
             var time = DateTime.Now;
             if (this.DB.DoesSRReportExsist(time.Month, time.Year))
             {
-                System.Windows.Forms.MessageBox.Show("A report for this month already exists! Please edit the existing report.", "Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                var dia = System.Windows.Forms.MessageBox.Show("A report for this month already exists! Do you want to create a report for a previous month?"
+                    , "Error!", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Error);
+
+                if (dia == System.Windows.Forms.DialogResult.Yes)
+                {
+
+                }
             }
             else
             {
-                var editor = new SREditor();
+                var editor = new SREditor(time);
                 this.Hide();
                 editor.ShowDialog();
                 this.Show();

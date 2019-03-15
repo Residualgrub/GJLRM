@@ -106,6 +106,9 @@
     <Compile Include="settings.xaml.cs">
       <DependentUpon>settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SReport\SRAddEditTran.xaml.cs">
+      <DependentUpon>SRAddEditTran.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SReport\SRConfigTaxAddEditWindow.xaml.cs">
       <DependentUpon>SRConfigTaxAddEditWindow.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SReport\SRAddEditTran.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,6 +293,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Prompts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

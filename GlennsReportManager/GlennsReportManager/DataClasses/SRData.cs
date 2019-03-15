@@ -48,7 +48,7 @@ namespace GlennsReportManager
         public bool Comish { get; set; }
         public decimal ComPercent { get; set; }
         public bool Tax { get; set; }
-        public SRTran(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor, bool comish, decimal compercent, bool tax)
+        public SRTran(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor)
         {
             this.EM = em;
             this.Date = date;
@@ -57,23 +57,18 @@ namespace GlennsReportManager
             this.Sale = sale;
             this.Cost = cost;
             this.Labor = labor;
-            this.Comish = comish;
-            this.ComPercent = compercent;
-            this.Tax = tax;
         }
     }
 
     public class SRReport
     {
         public List<SRTran> Trans = new List<SRTran>();
-        public List<SRTaxBracket> Taxes = new List<SRTaxBracket>();
-        public List<SRTransType> Types = new List<SRTransType>();
+        public SRConfigData Config { get; set; }
 
-        public SRReport( List<SRTran> trans, List<SRTaxBracket> taxes, List<SRTransType> types)
+        public SRReport( List<SRTran> trans, SRConfigData config)
         {
             this.Trans = trans;
-            this.Taxes = taxes;
-            this.Types = types;
+            this.Config = config;
         }
         public SRReport()
         {

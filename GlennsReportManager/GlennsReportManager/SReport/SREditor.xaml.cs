@@ -23,10 +23,12 @@ namespace GlennsReportManager.SReport
         decimal TotalTax;
         decimal TotalNonTax;
         SRReport Report { get; set; }
+        SRConfigData Config { get; set; }
         public List<string> headers = new List<string>();
         private readonly BackgroundWorker InitWorker = new BackgroundWorker();
         private LoadingWindow load = new LoadingWindow();
-        public SREditor()
+        DateTime RDate { get; set; }
+        public SREditor(DateTime rdate)
         {
             headers.Add("Employee");
             headers.Add("Date");
@@ -46,10 +48,22 @@ namespace GlennsReportManager.SReport
             load.ChnageText("Prepareing Report");
             this.IsEnabled = false;
             InitWorker.RunWorkerAsync();
-
-
+            RDate = rdate;
+            TranContain.SetTitle(RDate.ToString("MMMM yyyy"));
         }
 
+        private void BTAdd_Click(object sender, RoutedEventArgs e)
+        {
+            TranContain.NewTran(Config.Transtypes);
+        }
+
+
+
+
+
+
+
+        //Background worker functions
         public void InitDoWorkNew(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             SRConfigData config = SRConfigData.GetSRConfig();
@@ -80,11 +94,15 @@ namespace GlennsReportManager.SReport
 
         public void InitWorkDoneNew(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            var config = (SRConfigData)e.Result;
             Application.Current.Dispatcher.BeginInvoke(new Action(() => {
                 load.Hide();
-                this.IsEnabled = false;
+                this.Config = config;
+                this.IsEnabled = true;
 
             }));
         }
+
+
     }
 }

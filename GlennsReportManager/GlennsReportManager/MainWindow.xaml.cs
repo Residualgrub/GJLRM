@@ -84,8 +84,6 @@ namespace GlennsReportManager
 
         private void BTGBR_Click(object sender, RoutedEventArgs e)
         {
-            var window = new SReport.SREditor();
-            window.Show();
         }
     }
 }

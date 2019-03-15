@@ -117,3 +117,5 @@ C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\SRTranItem.baml
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainerWideHeader.g.cs
 C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\UserControls\DataContainerWideHeader.baml
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SRAddEditTran.g.cs
+C:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\obj\Debug\SReport\SRAddEditTran.baml

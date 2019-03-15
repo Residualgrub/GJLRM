@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Media;
 
 namespace GlennsReportManager.UserControls
 {
@@ -46,6 +47,11 @@ namespace GlennsReportManager.UserControls
         }
 
 
+        public void SetTitle(string title)
+        {
+            LBLTitle.Text = title;
+        }
+
 
         //Add function for Transaction
         public void Add(SRTran data)
@@ -54,10 +60,27 @@ namespace GlennsReportManager.UserControls
             {
                 LBLNoData.Visibility = Visibility.Hidden;
             }
-            var item = new SRTranItem(data.EM, data.Date, data.Type, data.Cust, data.Sale, data.Cost, data.Labor, data.Comish, data.ComPercent, data.Tax);
+            var item = new SRTranItem(data.EM, data.Date, data.Type, data.Cust, data.Sale, data.Cost, data.Labor);
             item.Margin = new Thickness(10, 10, 10, 0);
             SPData.Children.Add(item);
         }
 
+        public void NewTran(List<SRTransType> types)
+        {
+            try
+            {
+                var dialog = new SReport.SRAddEditTran(types);
+                if (dialog.ShowDialog().Value)
+                {
+                    Add(new SRTran(dialog.EM, dialog.Date, dialog.Type, dialog.Cust, dialog.Sale, dialog.Cost, dialog.Labor));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                SystemSounds.Exclamation.Play();
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
     }
 }

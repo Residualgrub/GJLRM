@@ -33,19 +33,16 @@ namespace GlennsReportManager.UserControls
         decimal ComPercent { get; set; }
         bool Tax { get; set; }
 
-        public SRTranItem(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor,
-            bool comish, decimal compercent, bool tax)
+        public SRTranItem(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor)
         {
             InitializeComponent();
 
-            Update(em, date, type, cust, sale, cost, labor,
-            comish, compercent, tax);
+            Update(em, date, type, cust, sale, cost, labor);
             
             
         }
 
-        public void Update(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor,
-            bool comish, decimal compercent, bool tax)
+        public void Update(string em, DateTime date, string type, string cust, decimal sale, decimal cost, decimal labor)
         {
             bool nocalc = false;
             this.EM = em;
@@ -55,9 +52,6 @@ namespace GlennsReportManager.UserControls
             this.Sale = sale;
             this.Cost = cost;
             this.Labor = labor;
-            this.Comish = comish;
-            this.ComPercent = ComPercent;
-            this.Tax = tax;
             LBLEM.Text = em;
             LBLDate.Text = string.Format("{0}-{1}", this.Date.ToString("dd"), this.Date.ToString("MMMM").Substring(0, 3));
             LBLType.Text = this.Type;

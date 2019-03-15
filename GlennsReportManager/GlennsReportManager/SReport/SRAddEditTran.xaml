@@ -1,0 +1,60 @@
+﻿<Window x:Class="GlennsReportManager.SReport.SRAddEditTran"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GlennsReportManager.SReport"
+        mc:Ignorable="d"
+        Title="SRAddEditTran" Height="298.825" Width="289.428" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Border Padding="10" HorizontalAlignment="Center" Margin="1,0,-6,-18" Width="288">
+
+        <StackPanel Orientation="Vertical">
+            <!--Emp Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Employee:" VerticalAlignment="Center"/>
+                <TextBox Name="TXTEM" Width="200" Height="18" Margin="5 0 0 0"/>
+             </StackPanel>
+                
+            <!--Date Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Date:" VerticalAlignment="Center"/>
+                <DatePicker x:Name="DTDate" Margin="32 0 0 0" VerticalAlignment="Center" Width="200"/>
+            </StackPanel>
+
+            <!--Type Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Type:" VerticalAlignment="Center"/>
+                <ComboBox Name="CMBType" Margin="32 0 0 0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!--Customer Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Customer:" VerticalAlignment="Center"/>
+                <TextBox Name="TXTCust" Margin="5 0 0 0" VerticalAlignment="Center" Width="200" Height="18"/>
+            </StackPanel>
+
+            <!--Sale Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Sale Price:" VerticalAlignment="Center"/>
+                <TextBox Name="TXTSale" Margin="6 0 0 0" VerticalAlignment="Center" Width="200" Height="18"/>
+            </StackPanel>
+
+            <!--Cost Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Cost:" VerticalAlignment="Center"/>
+                <TextBox Name="TXTCost" Margin="33 0 0 0" VerticalAlignment="Center" Width="200" Height="18"/>
+            </StackPanel>
+
+            <!--Labor Box-->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Labor:" VerticalAlignment="Center"/>
+                <TextBox Name="TXTLabor" Margin="26 0 0 0" VerticalAlignment="Center" Width="200" Height="18"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <Button Name="BTDone" Content="Save" Padding="20 3" Margin= "0 10 0 0" IsDefault="True" Click="BTDone_Click"/>
+                <Button Name="BTCan" Content="Cancel" Padding="20 3" Margin= "117 10 0 0" IsCancel="True"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</Window>
