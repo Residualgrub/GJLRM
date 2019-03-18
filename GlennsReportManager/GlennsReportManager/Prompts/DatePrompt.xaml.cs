@@ -17,11 +17,32 @@ namespace GlennsReportManager.Prompts
     /// <summary>
     /// Interaction logic for DatePrompt.xaml
     /// </summary>
-    public partial class DatePrompt : Window
+    public partial class DatePrompt : Window, IDisposable
     {
+        public DateTime D { get; set; }
         public DatePrompt()
         {
             InitializeComponent();
+        }
+
+
+
+        public void Dispose()
+        {
+            /* here you'd remove any references you don't need */
+        }
+
+        private void BTCon_Click(object sender, RoutedEventArgs e)
+        {
+            D = DTP.SelectedDate ?? DateTime.Now;
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void BTCan_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
         }
     }
 }

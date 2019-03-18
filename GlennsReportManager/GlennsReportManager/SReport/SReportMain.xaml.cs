@@ -136,6 +136,20 @@ namespace GlennsReportManager.SReport
             }
         }
 
+        private DateTime DoDatePrompt()
+        { 
+            DateTime RDate = DateTime.Now;
+            var datedialog = new Prompts.DatePrompt();
+
+            if (datedialog.ShowDialog().Value)
+            {
+                RDate = datedialog.D;
+
+            }
+
+            return RDate;
+        }
+
         //BG Worker Functions
 
 
