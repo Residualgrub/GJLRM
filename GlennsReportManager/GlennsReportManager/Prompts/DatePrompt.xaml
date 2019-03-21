@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlennsReportManager.Prompts"
         mc:Ignorable="d"
-        Title="Question" Height="132" Width="352" WindowStyle="ToolWindow" ResizeMode="NoResize">
+        Title="Question" Height="132" Width="352" WindowStyle="ToolWindow" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

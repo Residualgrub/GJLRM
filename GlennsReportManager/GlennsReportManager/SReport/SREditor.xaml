@@ -45,13 +45,13 @@
                         </Grid.ColumnDefinitions>
                         
                         <TextBlock Text="Total Taxable: " VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                        <TextBox Name="TXTTotalTax" Height="18" Width="150" Grid.Row="0" Grid.Column="1" />
+                        <TextBox Name="TXTTotalTax" Height="18" Width="150" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 
                         <TextBlock  Text="Total Non Taxable: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-                        <TextBox Name="TXTTotalNTax" Height="18" Width="150" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox Name="TXTTotalNTax" Height="18" Width="150" Grid.Row="1" Grid.Column="1" IsReadOnly="True"/>
 
                         <TextBlock Text="Total: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-                        <TextBox Name="TXTTotal" Height="18" Width="150" Grid.Row="2" Grid.Column="1" />
+                        <TextBox Name="TXTTotal" Height="18" Width="150" Grid.Row="2" Grid.Column="1" IsReadOnly="True"/>
                     </Grid>
 
                     <GroupBox Grid.Column="1" Header="Taxes" BorderBrush="DarkSlateGray" Margin="0 0 50 0">

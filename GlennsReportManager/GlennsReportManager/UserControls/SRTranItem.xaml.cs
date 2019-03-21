@@ -77,7 +77,7 @@ namespace GlennsReportManager.UserControls
                 this.GMargin = (this.Sale - this.Cost - this.Labor);
                 LBLMargin.Text = "$" + this.GMargin.ToString();
                 this.Profit = (this.GMargin / this.Sale);
-                LBLProfit.Text = this.Profit.ToString().Substring(0, 5);
+                LBLProfit.Text = this.Profit.ToString("#.###");
             }
             else
             {

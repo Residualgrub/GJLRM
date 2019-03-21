@@ -57,24 +57,33 @@ namespace GlennsReportManager.SReport
 
         private void BNTNew_Click(object sender, RoutedEventArgs e)
         {
-            var time = DateTime.Now;
-            if (this.DB.DoesSRReportExsist(time.Month, time.Year))
+            try
             {
-                var dia = System.Windows.Forms.MessageBox.Show("A report for this month already exists! Do you want to create a report for a previous month?"
-                    , "Error!", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Error);
-
-                if (dia == System.Windows.Forms.DialogResult.Yes)
+                var time = DateTime.Now;
+                if (this.DB.DoesSRReportExsist(time.Month, time.Year))
                 {
+                    var dia = System.Windows.Forms.MessageBox.Show("A report for this month already exists! Do you want to create a report for a previous month?"
+                        , "Error!", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Error);
 
+                    if (dia == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        DoDatePrompt();
+                    }
                 }
+                else
+                {
+                    var editor = new SREditor(time);
+                    this.Hide();
+                    editor.ShowDialog();
+                    this.Show();
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                var editor = new SREditor(time);
-                this.Hide();
-                editor.ShowDialog();
-                this.Show();
+                Helper.ThrowError(ex.Message);                
             }
+
         }
 
         private void BNTView_Click(object sender, RoutedEventArgs e)
@@ -136,18 +145,31 @@ namespace GlennsReportManager.SReport
             }
         }
 
-        private DateTime DoDatePrompt()
+        private void DoDatePrompt()
         { 
-            DateTime RDate = DateTime.Now;
+            DateTime RDate = DateTime.Now.AddDays(1); ;
             var datedialog = new Prompts.DatePrompt();
 
             if (datedialog.ShowDialog().Value)
             {
                 RDate = datedialog.D;
 
-            }
+                if (RDate <= DateTime.Now)
+                {
+                    if (!this.DB.DoesSRReportExsist(RDate.Month, RDate.Year))
+                    {
+                        var editor = new SREditor(RDate);
+                        this.Hide();
+                        editor.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        throw new NullReferenceException("A report for this month already exists.");
+                    }
+                }
 
-            return RDate;
+            }        
         }
 
         //BG Worker Functions

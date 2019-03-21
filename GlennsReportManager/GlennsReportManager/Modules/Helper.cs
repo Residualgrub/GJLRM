@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Media;
 namespace GlennsReportManager
 {
     class Helper
@@ -47,9 +48,17 @@ namespace GlennsReportManager
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
         }
 
+        //Remap one number range to another
         public static int Remap(int val, int Start1, int Start2, int End1, int End2)
         {
             return (val - Start1) / (End1 - Start1) * (End2 - Start2) + Start2;
+        }
+
+
+        public static void ThrowError(string msg)
+        {
+            SystemSounds.Exclamation.Play();
+            System.Windows.Forms.MessageBox.Show(msg, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
     }
 }

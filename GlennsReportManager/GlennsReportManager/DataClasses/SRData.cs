@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 //These classes hold data relevant to the sales reports 
 namespace GlennsReportManager
 {
@@ -60,6 +61,19 @@ namespace GlennsReportManager
         }
     }
 
+    //This is a class returned by the add transaction menu to the editor
+    public class SRReturnData
+    {
+        public decimal Sale { get; set; }
+        public bool Tax { get; set; }
+
+        public SRReturnData(decimal sale, bool tax)
+        {
+            this.Sale = sale;
+            this.Tax = tax;
+        }
+    }
+
     public class SRReport
     {
         public List<SRTran> Trans = new List<SRTran>();
@@ -72,6 +86,19 @@ namespace GlennsReportManager
         }
         public SRReport()
         {
+        }
+    }
+
+    //This is not a stored class. This just holds a text box and a tax reate for operational refrence.
+    public class SRTaxData
+    {
+        public TextBox Txtbox { get; set; }
+        public decimal Rate { get; set; }
+
+        public SRTaxData(TextBox txt, decimal rate)
+        {
+            this.Txtbox = txt;
+            this.Rate = rate;
         }
     }
 }

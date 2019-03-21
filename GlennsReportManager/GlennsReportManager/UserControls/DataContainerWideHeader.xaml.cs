@@ -65,14 +65,25 @@ namespace GlennsReportManager.UserControls
             SPData.Children.Add(item);
         }
 
-        public void NewTran(List<SRTransType> types)
+        public SRReturnData NewTran(List<SRTransType> types)
         {
             try
             {
                 var dialog = new SReport.SRAddEditTran(types);
                 if (dialog.ShowDialog().Value)
                 {
-                    Add(new SRTran(dialog.EM, dialog.Date, dialog.Type, dialog.Cust, dialog.Sale, dialog.Cost, dialog.Labor));
+                    bool tax = false;
+                    var tran = new SRTran(dialog.EM, dialog.Date, dialog.Type, dialog.Cust, dialog.Sale, dialog.Cost, dialog.Labor);
+                    Add(tran);
+
+                    foreach(var taxes in types)
+                    {
+                        if (taxes.Name == dialog.Type){
+                            tax = taxes.Taxable;
+                        }
+                    }
+
+                    return new SRReturnData(dialog.Sale, tax);
                 }
 
             }
@@ -80,7 +91,9 @@ namespace GlennsReportManager.UserControls
             {
                 SystemSounds.Exclamation.Play();
                 System.Windows.Forms.MessageBox.Show(ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                return null;
             }
+            return null;
         }
     }
 }

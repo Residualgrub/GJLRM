@@ -20,6 +20,7 @@ namespace GlennsReportManager.Prompts
     public partial class DatePrompt : Window, IDisposable
     {
         public DateTime D { get; set; }
+        private bool Set = false;
         public DatePrompt()
         {
             InitializeComponent();
@@ -34,15 +35,32 @@ namespace GlennsReportManager.Prompts
 
         private void BTCon_Click(object sender, RoutedEventArgs e)
         {
-            D = DTP.SelectedDate ?? DateTime.Now;
-            this.DialogResult = true;
-            this.Close();
+            try
+            {
+                D = DTP.SelectedDate ?? DateTime.Now;
+                if (D > DateTime.Now) { throw new ArgumentOutOfRangeException("A report can not be created for a future date!"); }
+                Set = true;
+                this.DialogResult = true;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+
+                Helper.ThrowError(ex.Message);
+            }
         }
 
         private void BTCan_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
             this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Set is false)
+            {
+                this.DialogResult = false;
+            }
         }
     }
 }

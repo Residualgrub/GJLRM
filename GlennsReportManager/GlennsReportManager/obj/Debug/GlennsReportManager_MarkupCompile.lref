@@ -5,7 +5,9 @@ FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\ba
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\GBReport\gbrmain.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\LoadingWindow.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\MainWindow.xaml;;
+FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\Prompts\DatePrompt.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\settings.xaml;;
+FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\SReport\SRAddEditTran.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\SReport\SRConfigTaxAddEditWindow.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\SReport\SRConfigTranAddEditWindow.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\SReport\SREditor.xaml;;
@@ -17,6 +19,4 @@ FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\Us
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\UserControls\SRTranItem.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\UserControls\TaxBracketItem.xaml;;
 FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\UserControls\TTypeItem.xaml;;
-FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\SReport\SRAddEditTran.xaml;;
-FC:\DevProj\GlennsReportManager\GJLRM\GlennsReportManager\GlennsReportManager\Prompts\DatePrompt.xaml;;
 

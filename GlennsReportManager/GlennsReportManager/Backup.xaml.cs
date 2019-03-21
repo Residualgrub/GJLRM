@@ -20,7 +20,7 @@ using System.Reflection;
 namespace GlennsReportManager
 {
 
-    public partial class Backup : Window
+    public partial class Backup : Window, IDisposable
     {
         public List<string> BDirectories = new List<string>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
@@ -347,6 +347,11 @@ namespace GlennsReportManager
             if (File.Exists(zip)) { File.Delete(zip); }
             if (File.Exists("manifest.json")) { File.Delete("manifest.json"); }
             worker.ReportProgress(0);
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }
