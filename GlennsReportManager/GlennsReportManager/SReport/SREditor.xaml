@@ -23,7 +23,7 @@
                 <!--Data Container Buttons-->
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <Button Name="BTAdd" Padding="5" Content="Add Transaction" Margin="7 5 0 0" Click="BTAdd_Click"/>
-                    <Button Name="BTEdit" Padding="5" Content="Edit Selected Transactions" Margin="5 5 0 0"/>
+                    <Button Name="BTEdit" Padding="5" Content="Edit Selected Transactions" Margin="5 5 0 0" Click="BTEdit_Click"/>
                     <Button Name="BTDel" Padding="5" Content="Delete Selected Transactions" Margin="5 5 0 0"/>
                 </StackPanel>
                 <!--Totals Grid-->

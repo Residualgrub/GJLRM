@@ -43,6 +43,12 @@ namespace GlennsReportManager.UserControls
 
         private void CKSele_Click(object sender, RoutedEventArgs e)
         {
+            bool sel = CKSele.IsChecked ?? false;
+
+            foreach(SRTranItem tran in SPData.Children)
+            {
+                tran.CKSele.IsChecked = sel;
+            }
 
         }
 
@@ -63,6 +69,14 @@ namespace GlennsReportManager.UserControls
             var item = new SRTranItem(data.EM, data.Date, data.Type, data.Cust, data.Sale, data.Cost, data.Labor);
             item.Margin = new Thickness(10, 10, 10, 0);
             SPData.Children.Add(item);
+        }
+
+        public void StartTranEdit()
+        {
+            foreach (SRTranItem item in SPData.Children)
+            {
+
+            }
         }
 
         public SRReturnData NewTran(List<SRTransType> types)

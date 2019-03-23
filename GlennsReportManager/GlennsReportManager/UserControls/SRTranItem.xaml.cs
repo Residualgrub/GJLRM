@@ -20,16 +20,16 @@ namespace GlennsReportManager.UserControls
     /// </summary>
     public partial class SRTranItem : UserControl
     {
-        string EM { get; set; }
-        DateTime Date { get; set; }
-        string Type { get; set; }
-        string Cust { get; set; }
-        decimal Sale { get; set; }
-        decimal Cost { get; set; }
-        decimal Labor { get; set; }
-        decimal GMargin { get; set; }
-        decimal Profit { get; set; }
-        bool Comish { get; set; }
+        public string EM { get; set; }
+        public DateTime Date { get; set; }
+        public string Type { get; set; }
+        public string Cust { get; set; }
+        public decimal Sale { get; set; }
+        public decimal Cost { get; set; }
+        public decimal Labor { get; set; }
+        public decimal GMargin { get; set; }
+        public decimal Profit { get; set; }
+        public bool Comish { get; set; }
         decimal ComPercent { get; set; }
         bool Tax { get; set; }
 

@@ -42,6 +42,29 @@ namespace GlennsReportManager.SReport
             this.Title = "Add New Transaction";
         }
 
+        public SRAddEditTran(List<SRTransType> types, SRTran tran)
+        {
+            InitializeComponent();
+            TXTEM.Focus();
+            TXTEM.Text = tran.EM;
+            DTDate.SelectedDate = tran.Date;
+            TXTCust.Text = tran.Cust;
+            TXTSale.Text = "$" + tran.Sale.ToString();
+            TXTCost.Text = "$" + tran.Cost.ToString();
+            if (tran.Cost < 0) { TXTCost.Text = "-"; }
+
+            TXTLabor.Text = "$" + tran.Labor.ToString();
+            if (tran.Labor < 0) { TXTLabor.Text = "-"; }
+
+
+            foreach (SRTransType type in types)
+            {
+                CMBType.Items.Add(type.Name);
+            }
+            CMBType.SelectedItem = tran.Type; //Set this to 
+            this.Title = "Edit Transaction";
+        }
+
         private void BTDone_Click(object sender, RoutedEventArgs e)
         {
             try

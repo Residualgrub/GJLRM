@@ -68,6 +68,19 @@ namespace GlennsReportManager.SReport
             }
         }
 
+        private void BTEdit_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (UserControls.SRTranItem item in TranContain.SPData.Children)
+            {
+                if(item.CKSele.IsChecked ?? false) {
+                    var editwin = new SRAddEditTran(Config.Transtypes, new SRTran(item.EM, item.Date, item.Type, item.Cust, item.Sale, item.Cost, item.Labor));
+                    var res = editwin.ShowDialog();
+
+                }
+                
+            }
+        }
+
 
         //Operation Functions 
 
@@ -83,7 +96,7 @@ namespace GlennsReportManager.SReport
             {
                 TotalTax += tran.Sale;
                 TXTTotalTax.Text = "$" + TotalTax.ToString("#.##");
-
+                TotalTaxes = 0;
                 foreach (var tax in TxtBoxes)
                 {
                     var amm = TotalTax * tax.Rate;
