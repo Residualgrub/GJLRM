@@ -71,14 +71,53 @@ namespace GlennsReportManager.UserControls
             SPData.Children.Add(item);
         }
 
-        public void StartTranEdit()
+        //Edit transactions
+        public void StartTranEdit(List<SRTransType> types)
         {
-            foreach (SRTranItem item in SPData.Children)
+            
+            foreach (UserControls.SRTranItem item in SPData.Children)
             {
+                if (item.CKSele.IsChecked ?? false)
+                {
+                    var dialog = new SReport.SRAddEditTran(types, new SRTran(item.EM, item.Date, item.Type, item.Cust, item.Sale, item.Cost, item.Labor));
+                    if (dialog.ShowDialog().Value)
+                    {
+                        item.CKSele.IsChecked = false;
+                        item.Update(dialog.EM, dialog.Date, dialog.Type, dialog.Cust, dialog.Sale, dialog.Cost, dialog.Labor);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
 
-            }
+            }  
         }
 
+        public void StartTranDelete()
+        {
+            List<SRTranItem> removed = new List<SRTranItem>();
+
+            foreach (SRTranItem ele in SPData.Children)
+            {
+                if (ele.CKSele.IsChecked ?? false)
+                {
+                    removed.Add(ele);
+                }
+            }
+
+            foreach (SRTranItem ele in removed)
+            {
+                SPData.Children.Remove(ele);
+            }
+
+            if (SPData.Children.Count <= 0)
+            {
+                LBLNoData.Visibility = Visibility.Visible;
+            }
+
+        }
+        //New transaction item
         public SRReturnData NewTran(List<SRTransType> types)
         {
             try
@@ -99,6 +138,10 @@ namespace GlennsReportManager.UserControls
 
                     return new SRReturnData(dialog.Sale, tax);
                 }
+                else
+                {
+                    return null;
+                }
 
             }
             catch (Exception ex)
@@ -107,7 +150,6 @@ namespace GlennsReportManager.UserControls
                 System.Windows.Forms.MessageBox.Show(ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 return null;
             }
-            return null;
         }
     }
 }

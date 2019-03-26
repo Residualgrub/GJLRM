@@ -49,11 +49,11 @@ namespace GlennsReportManager.SReport
             TXTEM.Text = tran.EM;
             DTDate.SelectedDate = tran.Date;
             TXTCust.Text = tran.Cust;
-            TXTSale.Text = "$" + tran.Sale.ToString();
-            TXTCost.Text = "$" + tran.Cost.ToString();
+            TXTSale.Text = tran.Sale.ToString();
+            TXTCost.Text = tran.Cost.ToString();
             if (tran.Cost < 0) { TXTCost.Text = "-"; }
 
-            TXTLabor.Text = "$" + tran.Labor.ToString();
+            TXTLabor.Text = tran.Labor.ToString();
             if (tran.Labor < 0) { TXTLabor.Text = "-"; }
 
 
@@ -61,7 +61,7 @@ namespace GlennsReportManager.SReport
             {
                 CMBType.Items.Add(type.Name);
             }
-            CMBType.SelectedItem = tran.Type; //Set this to 
+            CMBType.SelectedItem = tran.Type;
             this.Title = "Edit Transaction";
         }
 

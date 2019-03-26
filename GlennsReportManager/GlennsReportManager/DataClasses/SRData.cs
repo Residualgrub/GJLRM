@@ -7,6 +7,7 @@ using System.Windows.Controls;
 //These classes hold data relevant to the sales reports 
 namespace GlennsReportManager
 {
+    //This class holds data from the SQL containing details about reports
     public class SRData
     {
         public int Year;
@@ -33,6 +34,18 @@ namespace GlennsReportManager
             this.Srdata = data;
             this.Years = years;
             this.DB = db;
+        }
+    }
+
+    //This class is passed through the background worker in the SREditor
+    public class SREditInitData
+    {
+        public DateTime Date { get; set; }
+        public DBManager DB { get; set; }
+
+        public SREditInitData(DateTime date, DBManager db)
+        {
+            // need to set this up for the db init of the editor
         }
     }
 

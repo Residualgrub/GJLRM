@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace GlennsReportManager.SReport
 {
@@ -52,8 +54,8 @@ namespace GlennsReportManager.SReport
             load.Show();
             load.ChnageText("Prepareing Report");
             this.IsEnabled = false;
-            InitWorker.RunWorkerAsync();
             RDate = rdate;
+            InitWorker.RunWorkerAsync(argument: RDate);
             TranContain.SetTitle(RDate.ToString("MMMM yyyy"));
             TXTTotal.Text = "$0";
             TXTTotalNTax.Text = "$0";
@@ -62,23 +64,45 @@ namespace GlennsReportManager.SReport
 
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
-            var tran = TranContain.NewTran(Config.Transtypes);
-            if(tran != null){
-                UpdateBoxes(tran);
+            var loop = true;
+
+            while (loop)
+            {
+                var tran = TranContain.NewTran(Config.Transtypes);
+                if (tran != null)
+                {
+                    UpdateBoxes(tran);
+                }
+                else
+                {
+                    return;
+                }
+                var res = System.Windows.Forms.MessageBox.Show("Would you like to add another report?", "Question", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+
+                if(res == System.Windows.Forms.DialogResult.No) {
+                    loop = false;
+                }
             }
         }
 
         private void BTEdit_Click(object sender, RoutedEventArgs e)
         {
-            foreach (UserControls.SRTranItem item in TranContain.SPData.Children)
-            {
-                if(item.CKSele.IsChecked ?? false) {
-                    var editwin = new SRAddEditTran(Config.Transtypes, new SRTran(item.EM, item.Date, item.Type, item.Cust, item.Sale, item.Cost, item.Labor));
-                    var res = editwin.ShowDialog();
+            
+            TranContain.StartTranEdit(Config.Transtypes);
+            load.ChnageText("Recalculating Taxes");
+            load.Show();
+            FullBoxUp();
+            load.Hide();
+        }
 
-                }
-                
-            }
+        private void BTDel_Click(object sender, RoutedEventArgs e)
+        {
+            load.ChnageText("Deleting Transactions");
+            load.Show();
+            TranContain.StartTranDelete();
+            load.ChnageText("Recalculating Taxes");
+            FullBoxUp();
+            load.Hide();
         }
 
 
@@ -109,12 +133,55 @@ namespace GlennsReportManager.SReport
             TaxTotalTXT.Text = "$" + TotalTaxes.ToString("#.##");
         }
 
+        //Does a full re calculation of transactions for taxes
+        private void FullBoxUp()
+        {
+            TotalNonTax = 0;
+            TotalTax = 0;
+            TotalTaxes = 0;
+
+            foreach(UserControls.SRTranItem item in TranContain.SPData.Children)
+            {
+                bool tax = true;
+                foreach (var taxes in Config.Transtypes)
+                {
+                    if (taxes.Name == item.Type)
+                    {
+                        tax = taxes.Taxable;
+                    }
+
+                }
+
+                if (tax)
+                {
+                    TotalTax += item.Sale;
+                }
+                else
+                {
+                    TotalNonTax += item.Sale;
+                }
+            }
+
+            foreach (var tax in TxtBoxes)
+            {
+                var amm = TotalTax * tax.Rate;
+                TotalTaxes += amm;
+                tax.Txtbox.Text = "$" + (amm).ToString("#.##");
+            }
+
+            TXTTotalNTax.Text = "$" + TotalNonTax.ToString("#.##");
+            TaxTotalTXT.Text = "$" + TotalTaxes.ToString("#.##");
+            TXTTotalTax.Text = "$" + TotalTax.ToString("#.##");
+            TXTTotal.Text = "$" + (TotalTax + TotalNonTax).ToString("#.##");
+
+        }
+
 
         //Background worker functions
         public void InitDoWorkNew(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             SRConfigData config = SRConfigData.GetSRConfig();
-
+            DateTime date = (DateTime)e.Argument;
             //Added all the fields for different tax brackets.
             foreach (SRTaxBracket tax in config.TaxBrackets)
             {
@@ -153,7 +220,20 @@ namespace GlennsReportManager.SReport
                 SPNames.Children.Add(lbl);
                 SPBoxes.Children.Add(TaxTotalTXT);
             }));
-                e.Result = config;
+
+            var writereport = new SRReport();
+            writereport.Config = config;
+            writereport.Trans = new List<SRTran>();
+
+            string rawjson = JsonConvert.SerializeObject(writereport);
+            if (!Directory.Exists("data/transmngr"))
+            {
+                Directory.CreateDirectory("data/transmngr");
+            }
+
+            File.WriteAllText("data/transmngr/" + date.ToString("mmyy") + ".json", rawjson);
+            e.Result = config;
+            
             return;
         }
 
@@ -167,7 +247,5 @@ namespace GlennsReportManager.SReport
 
             }));
         }
-
-
     }
 }
